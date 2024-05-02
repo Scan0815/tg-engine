@@ -1,6 +1,4 @@
 import { IAnimation } from './IAnimation';
+import { IVector2 } from './IVector2';
 
-export interface ITile extends IAnimation{
-  x: number,
-  y: number
-}
+export interface ITile extends IVector2,IAnimation{}
