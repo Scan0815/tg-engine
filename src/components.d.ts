@@ -5,8 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ICollider } from "./components/interfaces/ICollider";
 import { IAnimation } from "./components/interfaces/IAnimation";
 import { ITile } from "./components/interfaces/ITile";
+export { ICollider } from "./components/interfaces/ICollider";
 export { IAnimation } from "./components/interfaces/IAnimation";
 export { ITile } from "./components/interfaces/ITile";
 export namespace Components {
@@ -15,6 +17,11 @@ export namespace Components {
     interface ExampleSprite {
     }
     interface ExampleSpriteMap {
+    }
+    interface TgCollider {
+        "checkCollision": (other: TgCollider) => Promise<ICollider>;
+        "type": string;
+        "updatePosition": () => Promise<void>;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -94,6 +101,10 @@ export namespace Components {
         "width": number;
     }
 }
+export interface TgColliderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLTgColliderElement;
+}
 declare global {
     interface HTMLExampleAnimatorElement extends Components.ExampleAnimator, HTMLStencilElement {
     }
@@ -112,6 +123,23 @@ declare global {
     var HTMLExampleSpriteMapElement: {
         prototype: HTMLExampleSpriteMapElement;
         new (): HTMLExampleSpriteMapElement;
+    };
+    interface HTMLTgColliderElementEventMap {
+        "collision": ICollider;
+    }
+    interface HTMLTgColliderElement extends Components.TgCollider, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLTgColliderElementEventMap>(type: K, listener: (this: HTMLTgColliderElement, ev: TgColliderCustomEvent<HTMLTgColliderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLTgColliderElementEventMap>(type: K, listener: (this: HTMLTgColliderElement, ev: TgColliderCustomEvent<HTMLTgColliderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLTgColliderElement: {
+        prototype: HTMLTgColliderElement;
+        new (): HTMLTgColliderElement;
     };
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -143,6 +171,7 @@ declare global {
         "example-animator": HTMLExampleAnimatorElement;
         "example-sprite": HTMLExampleSpriteElement;
         "example-sprite-map": HTMLExampleSpriteMapElement;
+        "tg-collider": HTMLTgColliderElement;
         "tg-sprite": HTMLTgSpriteElement;
         "tg-sprite-animator": HTMLTgSpriteAnimatorElement;
         "tg-sprite-map": HTMLTgSpriteMapElement;
@@ -154,6 +183,10 @@ declare namespace LocalJSX {
     interface ExampleSprite {
     }
     interface ExampleSpriteMap {
+    }
+    interface TgCollider {
+        "onCollision"?: (event: TgColliderCustomEvent<ICollider>) => void;
+        "type"?: string;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -232,6 +265,7 @@ declare namespace LocalJSX {
         "example-animator": ExampleAnimator;
         "example-sprite": ExampleSprite;
         "example-sprite-map": ExampleSpriteMap;
+        "tg-collider": TgCollider;
         "tg-sprite": TgSprite;
         "tg-sprite-animator": TgSpriteAnimator;
         "tg-sprite-map": TgSpriteMap;
@@ -244,6 +278,7 @@ declare module "@stencil/core" {
             "example-animator": LocalJSX.ExampleAnimator & JSXBase.HTMLAttributes<HTMLExampleAnimatorElement>;
             "example-sprite": LocalJSX.ExampleSprite & JSXBase.HTMLAttributes<HTMLExampleSpriteElement>;
             "example-sprite-map": LocalJSX.ExampleSpriteMap & JSXBase.HTMLAttributes<HTMLExampleSpriteMapElement>;
+            "tg-collider": LocalJSX.TgCollider & JSXBase.HTMLAttributes<HTMLTgColliderElement>;
             /**
              * a component that can be used to display a sprite sheet image in a game or animation scene
              * It takes in the following properties:

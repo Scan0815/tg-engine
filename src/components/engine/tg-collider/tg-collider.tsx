@@ -7,7 +7,7 @@ import { ICollider } from '../../interfaces/ICollider';
   tag: 'tg-collider',
   shadow: true
 })
-export class ColliderComponent implements ComponentInterface {
+export class TgCollider implements ComponentInterface {
   @Prop() type:string;
   @Element() el: HTMLElement;
   private data: ICollider;
@@ -23,7 +23,7 @@ export class ColliderComponent implements ComponentInterface {
     this.manager.addCollider(this);
   }
 
-  componentDidUnload() {
+  disconnectedCallback() {
     this.manager.removeCollider(this);
   }
 
@@ -35,7 +35,7 @@ export class ColliderComponent implements ComponentInterface {
   }
 
   @Method()
-  async checkCollision(other: ColliderComponent) {
+  async checkCollision(other: TgCollider) {
     const a = this.data;
     const b = other.data;
     if(a.x < b.x + b.width && a.x + a.width > b.x &&
