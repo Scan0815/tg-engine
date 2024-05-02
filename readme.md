@@ -2,6 +2,8 @@
 
 The Sprite Game Package is a collection of web components built with StencilJS, designed for easy and efficient integration of sprite-based graphics into web-based games and animations. This package includes components for displaying individual sprites, animating them, and managing sprite maps.
 
+ALPHA VERSION: This package is currently in alpha and may not be suitable for production use. Please report any issues or bugs you encounter.
+
 ## Components
 
 ### `tg-sprite`
