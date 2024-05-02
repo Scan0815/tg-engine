@@ -1,7 +1,3 @@
-Sure! Here's an enhanced version of your `README.md` that includes examples on how to use the `tg-sprite-animator` and `tg-sprite-map` components within your StencilJS-based Sprite Game Package.
-
----
-
 # Sprite Game Package
 
 The Sprite Game Package is a collection of web components built with StencilJS, designed for easy and efficient integration of sprite-based graphics into web-based games and animations. This package includes components for displaying individual sprites, animating them, and managing sprite maps.
