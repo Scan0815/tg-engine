@@ -28,6 +28,7 @@ export class TgSpriteAnimator implements ComponentInterface {
   @State() height: number = 0;
   /** the host element*/
   @Element() el!: HTMLElement;
+
   /** the sprite element*/
   private spriteElement: HTMLTgSpriteElement;
   /** the current animation*/

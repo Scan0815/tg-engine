@@ -24,8 +24,8 @@ export class ExampleSpriteMap implements ComponentInterface {
       {frames: [42]},
       {frames: [43]},
     ]
-    for (let i = 0; i < 10; i++) {
-      for (let j = 0; j < 10; j++) {
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
         this.spriteMap.push(Object.assign({ x: i, y: j }, tiles[j % 2]));
       }
     }

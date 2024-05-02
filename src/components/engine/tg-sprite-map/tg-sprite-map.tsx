@@ -33,12 +33,12 @@ export class TgSpriteMap {
    * @param style
    */
   renderAnimatedTile(tile: ITile, style: { [key: string]: string }) {
-    return <tg-sprite-animator animations={{
+    return <tg-sprite-animator onAnimationEnd={(ev) => {console.log(ev)}} animations={{
       'default': {
         frames: tile.frames,
         duration: tile.duration,
       },
-    }} play="default" style={style}>
+    }} play="default" iterationCount={5} style={style}>
       {this.renderTile(tile, null)}
     </tg-sprite-animator>
   }

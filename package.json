@@ -7,11 +7,11 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/tg-node-engine/tg-node-engine.esm.js",
+  "unpkg": "dist/tg-engine/tg-engine.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/tg-node-engine/tg-engine.esm.js",
-      "require": "./dist/tg-node-engine/tg-engine.cjs.js"
+      "import": "./dist/tg-engine/tg-engine.esm.js",
+      "require": "./dist/tg-engine/tg-engine.cjs.js"
     },
     "./engine/tg-sprite": {
       "import": "./dist/components/tg-sprite.js",
