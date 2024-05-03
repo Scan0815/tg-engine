@@ -38,7 +38,7 @@ export class TgSpriteMap {
         frames: tile.frames,
         duration: tile.duration,
       },
-    }} play="default" iterationCount={5} style={style}>
+    }} play="default" style={style}>
       {this.renderTile(tile, null)}
     </tg-sprite-animator>
   }
