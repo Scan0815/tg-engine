@@ -8,15 +8,15 @@ import { ICollider } from '../../interfaces/ICollider';
   shadow: true
 })
 export class TgCollider implements ComponentInterface {
-  @Prop() type:string;
+  @Prop() name:string = "default";
   @Element() el: HTMLElement;
-  private data: ICollider;
+  private data: ICollider = {x:0,y:0,width:0,height:0,name:"default"};
   private manager = ColliderManager.getInstance();
 
   @Event() collision: EventEmitter<ICollider>;
 
   componentWillLoad() {
-    this.data.type = this.type;
+    this.data.name = this.name;
   }
 
   componentDidLoad() {

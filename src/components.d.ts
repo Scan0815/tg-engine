@@ -20,7 +20,7 @@ export namespace Components {
     }
     interface TgCollider {
         "checkCollision": (other: TgCollider) => Promise<ICollider>;
-        "type": string;
+        "name": string;
         "updatePosition": () => Promise<void>;
     }
     /**
@@ -185,8 +185,8 @@ declare namespace LocalJSX {
     interface ExampleSpriteMap {
     }
     interface TgCollider {
+        "name"?: string;
         "onCollision"?: (event: TgColliderCustomEvent<ICollider>) => void;
-        "type"?: string;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
