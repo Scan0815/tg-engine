@@ -36,8 +36,10 @@ export class ExampleSpriteMap implements ComponentInterface {
       <Host>
         <tg-sprite-map
           src={this.spriteSrc}
-          width={this.spriteWidth}
-          height={this.spriteHeight}
+          tileWidth={this.spriteWidth}
+          tileHeight={this.spriteHeight}
+          width={8}
+          height={8}
           hFrames={this.spriteHFrames}
           vFrames={this.spriteVFrames}
           scale={this.spriteScale}

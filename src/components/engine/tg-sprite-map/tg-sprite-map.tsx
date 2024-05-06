@@ -10,8 +10,10 @@ export class TgSpriteMap {
   @Prop() src: string = '';
   @Prop() vFrames: number = 1;
   @Prop() hFrames: number = 1;
-  @Prop() width: number = 16;
-  @Prop() height: number = 16;
+  @Prop() width: number = 5;
+  @Prop() height: number = 5;
+  @Prop() tileWidth: number = 16;
+  @Prop() tileHeight: number = 16;
   @Prop() scale: number = 1;
   @Prop() tiles: ITile[] = [];
 
@@ -22,8 +24,8 @@ export class TgSpriteMap {
   getTileStyle(tile: ITile) {
     return {
       position: 'absolute',
-      top: `${tile.y * this.height * this.scale}px`,
-      left: `${tile.x * this.width * this.scale}px`
+      top: `${tile.y * this.tileHeight * this.scale}px`,
+      left: `${tile.x * this.tileWidth * this.scale}px`
     };
   }
 
@@ -51,8 +53,8 @@ export class TgSpriteMap {
   renderTile(tile: ITile, style?: { [key: string]: string }) {
     return <tg-sprite
       src={this.src}
-      width={this.width}
-      height={this.height}
+      width={this.tileWidth}
+      height={this.tileHeight}
       hFrames={this.hFrames}
       vFrames={this.vFrames}
       scale={this.scale}
@@ -62,7 +64,10 @@ export class TgSpriteMap {
 
   render() {
     return (
-      <Host>
+      <Host style={{
+        width: `${(this.tileWidth * this.scale) * this.width}px`,
+        height: `${(this.tileHeight * this.scale) * this.height}px`,
+      }}>
         {this.tiles.map(tile =>
           tile.frames?.length > 1 ? this.renderAnimatedTile(tile, this.getTileStyle(tile)) : this.renderTile(tile, this.getTileStyle(tile)),
         )}

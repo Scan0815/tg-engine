@@ -96,6 +96,8 @@ export namespace Components {
         "height": number;
         "scale": number;
         "src": string;
+        "tileHeight": number;
+        "tileWidth": number;
         "tiles": ITile[];
         "vFrames": number;
         "width": number;
@@ -257,6 +259,8 @@ declare namespace LocalJSX {
         "height"?: number;
         "scale"?: number;
         "src"?: string;
+        "tileHeight"?: number;
+        "tileWidth"?: number;
         "tiles"?: ITile[];
         "vFrames"?: number;
         "width"?: number;
