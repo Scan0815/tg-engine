@@ -20,8 +20,14 @@ export namespace Components {
     }
     interface TgCollider {
         "checkCollision": (other: TgCollider) => Promise<ICollider>;
+        "checkCollisionOnPosition": (x: number, y: number, width: number, height: number) => Promise<ICollider>;
+        "height": number;
         "name": string;
+        "offsetX": number;
+        "offsetY": number;
+        "scale": number;
         "updatePosition": () => Promise<void>;
+        "width": number;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -187,8 +193,13 @@ declare namespace LocalJSX {
     interface ExampleSpriteMap {
     }
     interface TgCollider {
+        "height"?: number;
         "name"?: string;
+        "offsetX"?: number;
+        "offsetY"?: number;
         "onCollision"?: (event: TgColliderCustomEvent<ICollider>) => void;
+        "scale"?: number;
+        "width"?: number;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene

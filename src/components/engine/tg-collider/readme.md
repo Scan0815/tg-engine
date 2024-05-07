@@ -7,9 +7,14 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `name`   | `name`    |             | `string` | `"default"` |
+| Property  | Attribute  | Description | Type     | Default     |
+| --------- | ---------- | ----------- | -------- | ----------- |
+| `height`  | `height`   |             | `number` | `0`         |
+| `name`    | `name`     |             | `string` | `"default"` |
+| `offsetX` | `offset-x` |             | `number` | `0`         |
+| `offsetY` | `offset-y` |             | `number` | `0`         |
+| `scale`   | `scale`    |             | `number` | `1`         |
+| `width`   | `width`    |             | `number` | `0`         |
 
 
 ## Events
@@ -30,6 +35,25 @@
 | Name    | Type         | Description |
 | ------- | ------------ | ----------- |
 | `other` | `TgCollider` |             |
+
+#### Returns
+
+Type: `Promise<ICollider>`
+
+
+
+### `checkCollisionOnPosition(x: number, y: number, width: number, height: number) => Promise<ICollider>`
+
+
+
+#### Parameters
+
+| Name     | Type     | Description |
+| -------- | -------- | ----------- |
+| `x`      | `number` |             |
+| `y`      | `number` |             |
+| `width`  | `number` |             |
+| `height` | `number` |             |
 
 #### Returns
 

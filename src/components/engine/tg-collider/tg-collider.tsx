@@ -1,6 +1,5 @@
-import { Component, Element, h, Method,Event, ComponentInterface} from '@stencil/core';
+import { Component, Element, h, Method,Event,  EventEmitter, Host, Prop, ComponentInterface} from '@stencil/core';
 import { ColliderManager } from '../../manager/collider.manager';
-import { EventEmitter, Host, Prop } from '../../../../dist/types/stencil-public-runtime';
 import { ICollider } from '../../interfaces/ICollider';
 
 @Component({
