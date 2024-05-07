@@ -66,8 +66,8 @@ export class TgCollider implements ComponentInterface {
       position: 'absolute',
       top: `${this.offsetY}px`,
       left: `${this.offsetX}px`,
-      width: `${this.width}px`,
-      height: `${this.height}px`,
+      width: `${this.width * this.scale}px`,
+      height: `${this.height * this.scale}px`,
       backgroundColor: 'rgba(255,0,0,0.5)'
     }}>
     </Host>);
