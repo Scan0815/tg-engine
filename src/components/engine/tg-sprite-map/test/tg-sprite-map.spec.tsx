@@ -8,7 +8,7 @@ describe('tg-sprite-map', () => {
       html: `<tg-sprite-map></tg-sprite-map>`,
     });
     expect(page.root).toEqualHtml(`
-      <tg-sprite-map>
+      <tg-sprite-map style="width: 80px; height: 80px;">
         <mock:shadow-root>
         </mock:shadow-root>
       </tg-sprite-map>

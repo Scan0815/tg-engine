@@ -21,6 +21,7 @@ export namespace Components {
     interface TgCollider {
         "checkCollision": (other: TgCollider) => Promise<ICollider>;
         "checkCollisionOnPosition": (x: number, y: number, width: number, height: number) => Promise<ICollider>;
+        "getData": () => Promise<ICollider>;
         "height": number;
         "name": string;
         "offsetX": number;
@@ -28,6 +29,8 @@ export namespace Components {
         "scale": number;
         "updatePosition": () => Promise<void>;
         "width": number;
+        "x": number;
+        "y": number;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -200,6 +203,8 @@ declare namespace LocalJSX {
         "onCollision"?: (event: TgColliderCustomEvent<ICollider>) => void;
         "scale"?: number;
         "width"?: number;
+        "x"?: number;
+        "y"?: number;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene

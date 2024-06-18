@@ -12,6 +12,8 @@ export class TgCollider implements ComponentInterface {
   @Prop() height:number = 0;
   @Prop() offsetX:number = 0;
   @Prop() offsetY:number = 0;
+  @Prop() x:number = 0;
+  @Prop() y:number = 0;
   @Prop() scale:number = 1;
 
   @Element() el: HTMLElement;
@@ -24,6 +26,8 @@ export class TgCollider implements ComponentInterface {
     this.data.name = this.name;
     this.data.width = this.width * this.scale;
     this.data.height = this.height * this.scale;
+    this.data.x = this.x;
+    this.data.y = this.y;
   }
 
   componentDidLoad() {
@@ -32,6 +36,11 @@ export class TgCollider implements ComponentInterface {
 
   disconnectedCallback() {
     this.manager.removeCollider(this);
+  }
+
+  @Method()
+  async getData() {
+    return Promise.resolve(this.data);
   }
 
   @Method()
@@ -52,12 +61,17 @@ export class TgCollider implements ComponentInterface {
 
   @Method()
   async checkCollision(other: TgCollider) {
-    const a = this.data;
-    const b = other.data;
+    const a = await this.getData();
+    const b = await other.getData();
+
+    console.log(a,b);
+
     if(a.x < b.x + b.width && a.x + a.width > b.x &&
       a.y < b.y + b.height && a.y + a.height > b.y){
       this.collision.emit(other.data);
-      return other.data;
+      return other.getData();
+    }else{
+      return null;
     }
   }
 
