@@ -62,9 +62,6 @@ export namespace Components {
         "x": number;
         "y": number;
     }
-    interface TgEngine {
-        "systems": any[];
-    }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
      * It takes in the following properties:
@@ -242,12 +239,6 @@ declare global {
         prototype: HTMLTgColliderElement;
         new (): HTMLTgColliderElement;
     };
-    interface HTMLTgEngineElement extends Components.TgEngine, HTMLStencilElement {
-    }
-    var HTMLTgEngineElement: {
-        prototype: HTMLTgEngineElement;
-        new (): HTMLTgEngineElement;
-    };
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
      * It takes in the following properties:
@@ -286,7 +277,6 @@ declare global {
         "example-sprite-map": HTMLExampleSpriteMapElement;
         "tg-camera": HTMLTgCameraElement;
         "tg-collider": HTMLTgColliderElement;
-        "tg-engine": HTMLTgEngineElement;
         "tg-sprite": HTMLTgSpriteElement;
         "tg-sprite-animator": HTMLTgSpriteAnimatorElement;
         "tg-sprite-map": HTMLTgSpriteMapElement;
@@ -337,9 +327,6 @@ declare namespace LocalJSX {
         "width"?: number;
         "x"?: number;
         "y"?: number;
-    }
-    interface TgEngine {
-        "systems"?: any[];
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -428,7 +415,6 @@ declare namespace LocalJSX {
         "example-sprite-map": ExampleSpriteMap;
         "tg-camera": TgCamera;
         "tg-collider": TgCollider;
-        "tg-engine": TgEngine;
         "tg-sprite": TgSprite;
         "tg-sprite-animator": TgSpriteAnimator;
         "tg-sprite-map": TgSpriteMap;
@@ -449,7 +435,6 @@ declare module "@stencil/core" {
             "example-sprite-map": LocalJSX.ExampleSpriteMap & JSXBase.HTMLAttributes<HTMLExampleSpriteMapElement>;
             "tg-camera": LocalJSX.TgCamera & JSXBase.HTMLAttributes<HTMLTgCameraElement>;
             "tg-collider": LocalJSX.TgCollider & JSXBase.HTMLAttributes<HTMLTgColliderElement>;
-            "tg-engine": LocalJSX.TgEngine & JSXBase.HTMLAttributes<HTMLTgEngineElement>;
             /**
              * a component that can be used to display a sprite sheet image in a game or animation scene
              * It takes in the following properties:

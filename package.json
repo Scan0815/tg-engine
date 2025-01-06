@@ -13,6 +13,14 @@
       "import": "./dist/tg-engine/tg-engine.esm.js",
       "require": "./dist/tg-engine/tg-engine.cjs.js"
     },
+    "./engine/tg-collider": {
+      "import": "./dist/components/tg-collider.js",
+      "types": "./dist/components/tg-collider.d.ts"
+    },
+    "./engine/tg-camera": {
+      "import": "./dist/components/tg-camera.js",
+      "types": "./dist/components/tg-camera.d.ts"
+    },
     "./engine/tg-sprite": {
       "import": "./dist/components/tg-sprite.js",
       "types": "./dist/components/tg-sprite.d.ts"
@@ -20,6 +28,10 @@
     "./engine/tg-sprite-animator": {
       "import": "./dist/components/tg-sprite-animator.js",
       "types": "./dist/components/tg-sprite-animator.d.ts"
+    },
+    "./engine/tg-sprite-map": {
+      "import": "./dist/components/tg-sprite-map.js",
+      "types": "./dist/components/tg-sprite-map.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
