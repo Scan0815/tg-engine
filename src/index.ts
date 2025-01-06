@@ -12,13 +12,10 @@
 export {ColliderManager} from './components/manager/collider.manager';
 export {Vector2} from './components/interfaces/IVector2';
 
-export type * from './components/manager/collider.manager';
-export type * from './components/interfaces/IVector2';
-export type * from './components/interfaces/IAnimation';
-export type * from './components/interfaces/ITile';
-export type * from './components/interfaces/ICollider';
-export type * from './components/interfaces/ISize';
-
-
+export {IVector2} from './components/interfaces/IVector2';
+export {IAnimation} from './components/interfaces/IAnimation';
+export {ITile} from './components/interfaces/ITile';
+export {ICollider} from './components/interfaces/ICollider';
+export {ISize} from './components/interfaces/ISize';
 
 export type * from './components.d.ts';
