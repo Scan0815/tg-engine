@@ -5,32 +5,65 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IVector2 } from "./components/interfaces/IVector2";
 import { ICollider } from "./components/interfaces/ICollider";
 import { IAnimation } from "./components/interfaces/IAnimation";
 import { ITile } from "./components/interfaces/ITile";
+export { IVector2 } from "./components/interfaces/IVector2";
 export { ICollider } from "./components/interfaces/ICollider";
 export { IAnimation } from "./components/interfaces/IAnimation";
 export { ITile } from "./components/interfaces/ITile";
 export namespace Components {
+    interface EntityBox {
+        "vector": IVector2;
+    }
+    interface EntityGoal {
+        "vector": IVector2;
+    }
+    interface EntityLevel {
+    }
+    interface EntityPlayer {
+        "direction": 'down' | 'right' | 'up' | 'left';
+        "flipH": () => Promise<void>;
+        "flipV": () => Promise<void>;
+        "getCollider": () => Promise<HTMLTgColliderElement>;
+        "playAnimation": (type: "idle" | "walk") => Promise<void>;
+        "type": 'idle' | 'walk';
+        "vector": IVector2;
+    }
+    interface EntityWall {
+        "vector": IVector2;
+    }
     interface ExampleAnimator {
+    }
+    interface ExampleGame {
     }
     interface ExampleSprite {
     }
     interface ExampleSpriteMap {
     }
+    interface TgCamera {
+        "followSpeed": number;
+        "height": number;
+        "target": HTMLEntityPlayerElement | null;
+        "width": number;
+    }
     interface TgCollider {
-        "checkCollision": (other: TgCollider) => Promise<ICollider>;
-        "checkCollisionOnPosition": (x: number, y: number, width: number, height: number) => Promise<ICollider>;
-        "getData": () => Promise<ICollider>;
+        "checkCollisionOnPosition": (x: number, y: number, width: number, height: number) => Promise<TgCollider>;
+        "debug": boolean;
+        "debugColor": string;
         "height": number;
         "name": string;
         "offsetX": number;
         "offsetY": number;
         "scale": number;
-        "updatePosition": () => Promise<void>;
+        "type": string;
         "width": number;
         "x": number;
         "y": number;
+    }
+    interface TgEngine {
+        "systems": any[];
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -112,16 +145,67 @@ export namespace Components {
         "width": number;
     }
 }
+export interface EntityPlayerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLEntityPlayerElement;
+}
 export interface TgColliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLTgColliderElement;
 }
 declare global {
+    interface HTMLEntityBoxElement extends Components.EntityBox, HTMLStencilElement {
+    }
+    var HTMLEntityBoxElement: {
+        prototype: HTMLEntityBoxElement;
+        new (): HTMLEntityBoxElement;
+    };
+    interface HTMLEntityGoalElement extends Components.EntityGoal, HTMLStencilElement {
+    }
+    var HTMLEntityGoalElement: {
+        prototype: HTMLEntityGoalElement;
+        new (): HTMLEntityGoalElement;
+    };
+    interface HTMLEntityLevelElement extends Components.EntityLevel, HTMLStencilElement {
+    }
+    var HTMLEntityLevelElement: {
+        prototype: HTMLEntityLevelElement;
+        new (): HTMLEntityLevelElement;
+    };
+    interface HTMLEntityPlayerElementEventMap {
+        "transition": boolean;
+    }
+    interface HTMLEntityPlayerElement extends Components.EntityPlayer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLEntityPlayerElementEventMap>(type: K, listener: (this: HTMLEntityPlayerElement, ev: EntityPlayerCustomEvent<HTMLEntityPlayerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLEntityPlayerElementEventMap>(type: K, listener: (this: HTMLEntityPlayerElement, ev: EntityPlayerCustomEvent<HTMLEntityPlayerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLEntityPlayerElement: {
+        prototype: HTMLEntityPlayerElement;
+        new (): HTMLEntityPlayerElement;
+    };
+    interface HTMLEntityWallElement extends Components.EntityWall, HTMLStencilElement {
+    }
+    var HTMLEntityWallElement: {
+        prototype: HTMLEntityWallElement;
+        new (): HTMLEntityWallElement;
+    };
     interface HTMLExampleAnimatorElement extends Components.ExampleAnimator, HTMLStencilElement {
     }
     var HTMLExampleAnimatorElement: {
         prototype: HTMLExampleAnimatorElement;
         new (): HTMLExampleAnimatorElement;
+    };
+    interface HTMLExampleGameElement extends Components.ExampleGame, HTMLStencilElement {
+    }
+    var HTMLExampleGameElement: {
+        prototype: HTMLExampleGameElement;
+        new (): HTMLExampleGameElement;
     };
     interface HTMLExampleSpriteElement extends Components.ExampleSprite, HTMLStencilElement {
     }
@@ -134,6 +218,12 @@ declare global {
     var HTMLExampleSpriteMapElement: {
         prototype: HTMLExampleSpriteMapElement;
         new (): HTMLExampleSpriteMapElement;
+    };
+    interface HTMLTgCameraElement extends Components.TgCamera, HTMLStencilElement {
+    }
+    var HTMLTgCameraElement: {
+        prototype: HTMLTgCameraElement;
+        new (): HTMLTgCameraElement;
     };
     interface HTMLTgColliderElementEventMap {
         "collision": ICollider;
@@ -151,6 +241,12 @@ declare global {
     var HTMLTgColliderElement: {
         prototype: HTMLTgColliderElement;
         new (): HTMLTgColliderElement;
+    };
+    interface HTMLTgEngineElement extends Components.TgEngine, HTMLStencilElement {
+    }
+    var HTMLTgEngineElement: {
+        prototype: HTMLTgEngineElement;
+        new (): HTMLTgEngineElement;
     };
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -179,32 +275,71 @@ declare global {
         new (): HTMLTgSpriteMapElement;
     };
     interface HTMLElementTagNameMap {
+        "entity-box": HTMLEntityBoxElement;
+        "entity-goal": HTMLEntityGoalElement;
+        "entity-level": HTMLEntityLevelElement;
+        "entity-player": HTMLEntityPlayerElement;
+        "entity-wall": HTMLEntityWallElement;
         "example-animator": HTMLExampleAnimatorElement;
+        "example-game": HTMLExampleGameElement;
         "example-sprite": HTMLExampleSpriteElement;
         "example-sprite-map": HTMLExampleSpriteMapElement;
+        "tg-camera": HTMLTgCameraElement;
         "tg-collider": HTMLTgColliderElement;
+        "tg-engine": HTMLTgEngineElement;
         "tg-sprite": HTMLTgSpriteElement;
         "tg-sprite-animator": HTMLTgSpriteAnimatorElement;
         "tg-sprite-map": HTMLTgSpriteMapElement;
     }
 }
 declare namespace LocalJSX {
+    interface EntityBox {
+        "vector"?: IVector2;
+    }
+    interface EntityGoal {
+        "vector"?: IVector2;
+    }
+    interface EntityLevel {
+    }
+    interface EntityPlayer {
+        "direction"?: 'down' | 'right' | 'up' | 'left';
+        "onTransition"?: (event: EntityPlayerCustomEvent<boolean>) => void;
+        "type"?: 'idle' | 'walk';
+        "vector"?: IVector2;
+    }
+    interface EntityWall {
+        "vector"?: IVector2;
+    }
     interface ExampleAnimator {
+    }
+    interface ExampleGame {
     }
     interface ExampleSprite {
     }
     interface ExampleSpriteMap {
     }
+    interface TgCamera {
+        "followSpeed"?: number;
+        "height"?: number;
+        "target"?: HTMLEntityPlayerElement | null;
+        "width"?: number;
+    }
     interface TgCollider {
+        "debug"?: boolean;
+        "debugColor"?: string;
         "height"?: number;
         "name"?: string;
         "offsetX"?: number;
         "offsetY"?: number;
         "onCollision"?: (event: TgColliderCustomEvent<ICollider>) => void;
         "scale"?: number;
+        "type"?: string;
         "width"?: number;
         "x"?: number;
         "y"?: number;
+    }
+    interface TgEngine {
+        "systems"?: any[];
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -282,10 +417,18 @@ declare namespace LocalJSX {
         "width"?: number;
     }
     interface IntrinsicElements {
+        "entity-box": EntityBox;
+        "entity-goal": EntityGoal;
+        "entity-level": EntityLevel;
+        "entity-player": EntityPlayer;
+        "entity-wall": EntityWall;
         "example-animator": ExampleAnimator;
+        "example-game": ExampleGame;
         "example-sprite": ExampleSprite;
         "example-sprite-map": ExampleSpriteMap;
+        "tg-camera": TgCamera;
         "tg-collider": TgCollider;
+        "tg-engine": TgEngine;
         "tg-sprite": TgSprite;
         "tg-sprite-animator": TgSpriteAnimator;
         "tg-sprite-map": TgSpriteMap;
@@ -295,10 +438,18 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "entity-box": LocalJSX.EntityBox & JSXBase.HTMLAttributes<HTMLEntityBoxElement>;
+            "entity-goal": LocalJSX.EntityGoal & JSXBase.HTMLAttributes<HTMLEntityGoalElement>;
+            "entity-level": LocalJSX.EntityLevel & JSXBase.HTMLAttributes<HTMLEntityLevelElement>;
+            "entity-player": LocalJSX.EntityPlayer & JSXBase.HTMLAttributes<HTMLEntityPlayerElement>;
+            "entity-wall": LocalJSX.EntityWall & JSXBase.HTMLAttributes<HTMLEntityWallElement>;
             "example-animator": LocalJSX.ExampleAnimator & JSXBase.HTMLAttributes<HTMLExampleAnimatorElement>;
+            "example-game": LocalJSX.ExampleGame & JSXBase.HTMLAttributes<HTMLExampleGameElement>;
             "example-sprite": LocalJSX.ExampleSprite & JSXBase.HTMLAttributes<HTMLExampleSpriteElement>;
             "example-sprite-map": LocalJSX.ExampleSpriteMap & JSXBase.HTMLAttributes<HTMLExampleSpriteMapElement>;
+            "tg-camera": LocalJSX.TgCamera & JSXBase.HTMLAttributes<HTMLTgCameraElement>;
             "tg-collider": LocalJSX.TgCollider & JSXBase.HTMLAttributes<HTMLTgColliderElement>;
+            "tg-engine": LocalJSX.TgEngine & JSXBase.HTMLAttributes<HTMLTgEngineElement>;
             /**
              * a component that can be used to display a sprite sheet image in a game or animation scene
              * It takes in the following properties:

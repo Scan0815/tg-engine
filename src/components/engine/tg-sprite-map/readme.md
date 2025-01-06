@@ -24,6 +24,7 @@
 
 ### Used by
 
+ - [entity-level](../../example/example-game/entities/entity-level)
  - [example-sprite-map](../../example/example-sprite-map)
 
 ### Depends on
@@ -36,6 +37,7 @@
 graph TD;
   tg-sprite-map --> tg-sprite-animator
   tg-sprite-map --> tg-sprite
+  entity-level --> tg-sprite-map
   example-sprite-map --> tg-sprite-map
   style tg-sprite-map fill:#f9f,stroke:#333,stroke-width:4px
 ```

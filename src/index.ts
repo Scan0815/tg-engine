@@ -8,4 +8,12 @@
  * to consume components of this package as outlined in the `README.md`.
  */
 
+export type * from './components/manager/collider.manager';
+
+export type * from './components/interfaces/IVector2'
+export type * from './components/interfaces/IAnimation'
+export type * from './components/interfaces/ITile'
+export type * from './components/interfaces/ICollider'
+export type * from './components/interfaces/ISize'
+
 export type * from './components.d.ts';

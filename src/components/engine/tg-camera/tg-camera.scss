@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  .camera-content {
+    position: absolute;
+    transition: transform 0.1s ease-out;
+    margin: 0;
+    padding: 0;
+  }
+}

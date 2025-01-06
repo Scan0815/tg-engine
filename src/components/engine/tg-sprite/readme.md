@@ -29,6 +29,7 @@ It takes in the following properties:
 
 ### Used by
 
+ - [entity-player](../../example/example-game/entities/entity-player)
  - [example-animator](../../example/example-animator)
  - [example-sprite](../../example/example-sprite)
  - [tg-sprite-map](../tg-sprite-map)
@@ -36,6 +37,7 @@ It takes in the following properties:
 ### Graph
 ```mermaid
 graph TD;
+  entity-player --> tg-sprite
   example-animator --> tg-sprite
   example-sprite --> tg-sprite
   tg-sprite-map --> tg-sprite

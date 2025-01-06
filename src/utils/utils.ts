@@ -7,3 +7,7 @@ export const CalculateOffset = (width:number,height:number,scale:number,currentF
 
   return { offsetX, offsetY };
 }
+
+export const calcTile = (tile:number) => {
+  return tile * 80
+}

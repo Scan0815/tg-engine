@@ -1,3 +1,5 @@
+import { TgCollider } from '../engine/tg-collider/tg-collider';
+
 export class ColliderManager {
   private static instance: ColliderManager;
   private colliders: any[] = [];
@@ -11,7 +13,11 @@ export class ColliderManager {
     return ColliderManager.instance;
   }
 
-  addCollider(collider: any) {
+  public getColliders() {
+    return this.colliders;
+  }
+
+  addCollider(collider: HTMLTgColliderElement) {
     this.colliders.push(collider);
   }
 
@@ -19,17 +25,18 @@ export class ColliderManager {
     this.colliders = this.colliders.filter(c => c !== collider);
   }
 
-  public updateColliderPositions() {
-    this.colliders.forEach(collider => collider.updatePosition());
-  }
-
-  public checkAllCollisions() {
+  public async checkCollisionOnPosition(x: number, y: number, width: number, height: number): Promise<TgCollider[]> {
+    const results:TgCollider[] = [];
     for (let i = 0; i < this.colliders.length; i++) {
-      for (let j = i + 1; j < this.colliders.length; j++) {
-        if (this.colliders[i].checkCollision(this.colliders[j])) {
-          console.log('Collision detected between', this.colliders[i], 'and', this.colliders[j]);
-        }
+      const collision = await this.colliders[i].checkCollisionOnPosition(x, y, width, height)
+      if(collision !== null) {
+        results.push(collision);
       }
     }
+    if(results.length > 0) {
+      return results;
+    }
+    return
   }
+
 }

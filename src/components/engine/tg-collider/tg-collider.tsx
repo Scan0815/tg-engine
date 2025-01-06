@@ -8,68 +8,49 @@ import { ICollider } from '../../interfaces/ICollider';
 })
 export class TgCollider implements ComponentInterface {
   @Prop() name:string = "default";
+  @Prop() type:string = "default";
   @Prop() width:number = 0;
   @Prop() height:number = 0;
   @Prop() offsetX:number = 0;
   @Prop() offsetY:number = 0;
+  @Prop() debug:boolean = false;
+  @Prop() debugColor:string = 'rgba(255,0,0,0.5)';
   @Prop() x:number = 0;
   @Prop() y:number = 0;
   @Prop() scale:number = 1;
 
-  @Element() el: HTMLElement;
-  private data: ICollider = {x:0,y:0,width:0,height:0,name:"default"};
+  @Element() el: HTMLTgColliderElement;
   private manager = ColliderManager.getInstance();
-
   @Event() collision: EventEmitter<ICollider>;
 
-  componentWillLoad() {
-    this.data.name = this.name;
-    this.data.width = this.width * this.scale;
-    this.data.height = this.height * this.scale;
-    this.data.x = this.x;
-    this.data.y = this.y;
-  }
-
   componentDidLoad() {
-    this.manager.addCollider(this);
+    this.manager.addCollider(this.el);
   }
 
   disconnectedCallback() {
     this.manager.removeCollider(this);
   }
 
-  @Method()
-  async getData() {
-    return Promise.resolve(this.data);
+  async checkCollisionOnName(name:string):Promise<TgCollider> {
+   const a = this.el;
+   const colliders =  this.manager.getColliders().filter(collider => collider.name === name);
+
+    for(let i = 0; i < colliders.length; i++){
+      const b = colliders[i];
+      if(a.x < b.x + b.width && a.x + a.width > b.x &&
+        a.y < b.y + b.height && a.y + a.height > b.y){
+        return b;
+      }
+    }
+    return null;
   }
 
   @Method()
-  async updatePosition() {
-    const rect = this.el.getBoundingClientRect();
-    this.data.x =  rect.left + this.offsetX;
-    this.data.y =  rect.top + this.offsetY;
-  }
-
-  @Method()
-  async checkCollisionOnPosition(x:number,y:number,width:number,height:number) {
-    const a = this.data;
+  async checkCollisionOnPosition(x:number,y:number,width:number,height:number):Promise<TgCollider> {
+    const a = this.el;
     if(a.x < x + width && a.x + a.width > x &&
       a.y < y + height && a.y + a.height > y){
-      return this.data;
-    }
-  }
-
-  @Method()
-  async checkCollision(other: TgCollider) {
-    const a = await this.getData();
-    const b = await other.getData();
-
-    console.log(a,b);
-
-    if(a.x < b.x + b.width && a.x + a.width > b.x &&
-      a.y < b.y + b.height && a.y + a.height > b.y){
-      this.collision.emit(other.data);
-      return other.getData();
+      return this;
     }else{
       return null;
     }
@@ -82,7 +63,7 @@ export class TgCollider implements ComponentInterface {
       left: `${this.offsetX}px`,
       width: `${this.width * this.scale}px`,
       height: `${this.height * this.scale}px`,
-      backgroundColor: 'rgba(255,0,0,0.5)'
+      backgroundColor: this.debug && this.debugColor
     }}>
     </Host>);
   }

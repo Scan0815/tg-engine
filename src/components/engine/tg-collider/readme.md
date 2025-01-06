@@ -7,14 +7,19 @@
 
 ## Properties
 
-| Property  | Attribute  | Description | Type     | Default     |
-| --------- | ---------- | ----------- | -------- | ----------- |
-| `height`  | `height`   |             | `number` | `0`         |
-| `name`    | `name`     |             | `string` | `"default"` |
-| `offsetX` | `offset-x` |             | `number` | `0`         |
-| `offsetY` | `offset-y` |             | `number` | `0`         |
-| `scale`   | `scale`    |             | `number` | `1`         |
-| `width`   | `width`    |             | `number` | `0`         |
+| Property     | Attribute     | Description | Type      | Default               |
+| ------------ | ------------- | ----------- | --------- | --------------------- |
+| `debug`      | `debug`       |             | `boolean` | `false`               |
+| `debugColor` | `debug-color` |             | `string`  | `'rgba(255,0,0,0.5)'` |
+| `height`     | `height`      |             | `number`  | `0`                   |
+| `name`       | `name`        |             | `string`  | `"default"`           |
+| `offsetX`    | `offset-x`    |             | `number`  | `0`                   |
+| `offsetY`    | `offset-y`    |             | `number`  | `0`                   |
+| `scale`      | `scale`       |             | `number`  | `1`                   |
+| `type`       | `type`        |             | `string`  | `"default"`           |
+| `width`      | `width`       |             | `number`  | `0`                   |
+| `x`          | `x`           |             | `number`  | `0`                   |
+| `y`          | `y`           |             | `number`  | `0`                   |
 
 
 ## Events
@@ -26,23 +31,7 @@
 
 ## Methods
 
-### `checkCollision(other: TgCollider) => Promise<ICollider>`
-
-
-
-#### Parameters
-
-| Name    | Type         | Description |
-| ------- | ------------ | ----------- |
-| `other` | `TgCollider` |             |
-
-#### Returns
-
-Type: `Promise<ICollider>`
-
-
-
-### `checkCollisionOnPosition(x: number, y: number, width: number, height: number) => Promise<ICollider>`
+### `checkCollisionOnPosition(x: number, y: number, width: number, height: number) => Promise<TgCollider>`
 
 
 
@@ -57,20 +46,29 @@ Type: `Promise<ICollider>`
 
 #### Returns
 
-Type: `Promise<ICollider>`
+Type: `Promise<TgCollider>`
 
 
 
-### `updatePosition() => Promise<void>`
 
+## Dependencies
 
+### Used by
 
-#### Returns
+ - [entity-box](../../example/example-game/entities/entity-box)
+ - [entity-goal](../../example/example-game/entities/entity-goal)
+ - [entity-player](../../example/example-game/entities/entity-player)
+ - [entity-wall](../../example/example-game/entities/entity-wall)
 
-Type: `Promise<void>`
-
-
-
+### Graph
+```mermaid
+graph TD;
+  entity-box --> tg-collider
+  entity-goal --> tg-collider
+  entity-player --> tg-collider
+  entity-wall --> tg-collider
+  style tg-collider fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

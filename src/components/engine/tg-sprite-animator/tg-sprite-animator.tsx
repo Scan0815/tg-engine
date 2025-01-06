@@ -37,17 +37,13 @@ export class TgSpriteAnimator implements ComponentInterface {
   /** Watch for changes in the play prop*/
   @Watch('play')
   watchHandler() {
-    setTimeout(() => {
       this.style = this.updateAnimationClass(this.play);
-    }, 0);
   }
 
   /** watch for changed state prop*/
   @Watch('state')
   watchStateHandler() {
-    setTimeout(() => {
       this.style = this.updateAnimationClass(this.play);
-    }, 0);
   }
 
   /** trigger if the sprite component hast changed props
