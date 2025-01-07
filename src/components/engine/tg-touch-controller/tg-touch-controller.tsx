@@ -1,20 +1,35 @@
-import { Component, EventEmitter,Host, h,Event } from '@stencil/core';
+import { Component, EventEmitter,Host, h,Event,Element,ComponentInterface } from '@stencil/core';
 
 @Component({
   tag: 'tg-touch-controller',
   styleUrl: 'tg-touch-controller.scss',
   shadow: true,
 })
-export class TgTouchController {
-
+export class TgTouchController implements ComponentInterface {
   private startX: number = 0;
   private startY: number = 0;
   private threshold: number = 50; // Mindestdistanz, um eine Geste als valide zu betrachten
+
+  @Element() el!: HTMLTgTouchControllerElement;
 
   @Event() swipeUp: EventEmitter<void>;
   @Event() swipeDown: EventEmitter<void>;
   @Event() swipeLeft: EventEmitter<void>;
   @Event() swipeRight: EventEmitter<void>;
+
+  connectedCallback() {
+    this.el?.addEventListener('touchstart', this.handleTouchStart.bind(this), {
+      passive: true,
+    });
+    this.el?.addEventListener('touchend', this.handleTouchEnd.bind(this), {
+      passive: true,
+    });
+  }
+
+  disconnectedCallback() {
+    this.el?.removeEventListener('touchstart', this.handleTouchStart.bind(this));
+    this.el?.removeEventListener('touchend', this.handleTouchEnd.bind(this));
+  }
 
   private handleTouchStart(event: TouchEvent) {
     const touch = event.touches[0];
@@ -47,9 +62,7 @@ export class TgTouchController {
   render() {
     return (
       <Host
-        class="touch-area"
-        onTouchStart={(e) => this.handleTouchStart(e)}
-        onTouchEnd={(e) => this.handleTouchEnd(e)}>
+        class="touch-area">
         <slot />
       </Host>
     );
