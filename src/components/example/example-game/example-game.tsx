@@ -111,6 +111,12 @@ export class ExampleGame implements ComponentInterface {
   render() {
     return (
       <Host>
+        <tg-touch-controller
+          onSwipeUp={() => console.log('Swiped up!')}
+          onSwipeDown={() => console.log('Swiped down!')}
+          onSwipeLeft={() => console.log('Swiped left!')}
+          onSwipeRight={() => console.log('Swiped right!')}
+        >
         <tg-camera ref={ref => this.camera = ref} width={600} height={600}>
           <example-entity-level />
           <example-entity-wall vector={new Vector2(0, 0)} />
@@ -165,6 +171,7 @@ export class ExampleGame implements ComponentInterface {
                          onTransition={(ev) => this.playerTransition =  ev.detail}
                          vector={new Vector2(TilePos(2), TilePos(2))} />
         </tg-camera>
+        </tg-touch-controller>
       </Host>
     );
   }

@@ -9,6 +9,7 @@
 
 ### Depends on
 
+- [tg-touch-controller](../../engine/tg-touch-controller)
 - [tg-camera](../../engine/tg-camera)
 - [example-entity-level](./entities/entity-level)
 - [example-entity-wall](./entities/entity-wall)
@@ -19,6 +20,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  example-game --> tg-touch-controller
   example-game --> tg-camera
   example-game --> example-entity-level
   example-game --> example-entity-wall

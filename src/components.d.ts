@@ -141,6 +141,8 @@ export namespace Components {
         "vFrames": number;
         "width": number;
     }
+    interface TgTouchController {
+    }
 }
 export interface ExampleEntityPlayerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -149,6 +151,10 @@ export interface ExampleEntityPlayerCustomEvent<T> extends CustomEvent<T> {
 export interface TgColliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLTgColliderElement;
+}
+export interface TgTouchControllerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLTgTouchControllerElement;
 }
 declare global {
     interface HTMLExampleAnimatorElement extends Components.ExampleAnimator, HTMLStencilElement {
@@ -265,6 +271,26 @@ declare global {
         prototype: HTMLTgSpriteMapElement;
         new (): HTMLTgSpriteMapElement;
     };
+    interface HTMLTgTouchControllerElementEventMap {
+        "swipeUp": void;
+        "swipeDown": void;
+        "swipeLeft": void;
+        "swipeRight": void;
+    }
+    interface HTMLTgTouchControllerElement extends Components.TgTouchController, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLTgTouchControllerElementEventMap>(type: K, listener: (this: HTMLTgTouchControllerElement, ev: TgTouchControllerCustomEvent<HTMLTgTouchControllerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLTgTouchControllerElementEventMap>(type: K, listener: (this: HTMLTgTouchControllerElement, ev: TgTouchControllerCustomEvent<HTMLTgTouchControllerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLTgTouchControllerElement: {
+        prototype: HTMLTgTouchControllerElement;
+        new (): HTMLTgTouchControllerElement;
+    };
     interface HTMLElementTagNameMap {
         "example-animator": HTMLExampleAnimatorElement;
         "example-entity-box": HTMLExampleEntityBoxElement;
@@ -280,6 +306,7 @@ declare global {
         "tg-sprite": HTMLTgSpriteElement;
         "tg-sprite-animator": HTMLTgSpriteAnimatorElement;
         "tg-sprite-map": HTMLTgSpriteMapElement;
+        "tg-touch-controller": HTMLTgTouchControllerElement;
     }
 }
 declare namespace LocalJSX {
@@ -403,6 +430,12 @@ declare namespace LocalJSX {
         "vFrames"?: number;
         "width"?: number;
     }
+    interface TgTouchController {
+        "onSwipeDown"?: (event: TgTouchControllerCustomEvent<void>) => void;
+        "onSwipeLeft"?: (event: TgTouchControllerCustomEvent<void>) => void;
+        "onSwipeRight"?: (event: TgTouchControllerCustomEvent<void>) => void;
+        "onSwipeUp"?: (event: TgTouchControllerCustomEvent<void>) => void;
+    }
     interface IntrinsicElements {
         "example-animator": ExampleAnimator;
         "example-entity-box": ExampleEntityBox;
@@ -418,6 +451,7 @@ declare namespace LocalJSX {
         "tg-sprite": TgSprite;
         "tg-sprite-animator": TgSpriteAnimator;
         "tg-sprite-map": TgSpriteMap;
+        "tg-touch-controller": TgTouchController;
     }
 }
 export { LocalJSX as JSX };
@@ -446,6 +480,7 @@ declare module "@stencil/core" {
              */
             "tg-sprite-animator": LocalJSX.TgSpriteAnimator & JSXBase.HTMLAttributes<HTMLTgSpriteAnimatorElement>;
             "tg-sprite-map": LocalJSX.TgSpriteMap & JSXBase.HTMLAttributes<HTMLTgSpriteMapElement>;
+            "tg-touch-controller": LocalJSX.TgTouchController & JSXBase.HTMLAttributes<HTMLTgTouchControllerElement>;
         }
     }
 }
