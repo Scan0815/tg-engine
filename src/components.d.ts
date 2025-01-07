@@ -14,15 +14,17 @@ export { ICollider } from "./components/interfaces/ICollider";
 export { IAnimation } from "./components/interfaces/IAnimation";
 export { ITile } from "./components/interfaces/ITile";
 export namespace Components {
-    interface EntityBox {
+    interface ExampleAnimator {
+    }
+    interface ExampleEntityBox {
         "vector": IVector2;
     }
-    interface EntityGoal {
+    interface ExampleEntityGoal {
         "vector": IVector2;
     }
-    interface EntityLevel {
+    interface ExampleEntityLevel {
     }
-    interface EntityPlayer {
+    interface ExampleEntityPlayer {
         "direction": 'down' | 'right' | 'up' | 'left';
         "flipH": () => Promise<void>;
         "flipV": () => Promise<void>;
@@ -31,10 +33,8 @@ export namespace Components {
         "type": 'idle' | 'walk';
         "vector": IVector2;
     }
-    interface EntityWall {
+    interface ExampleEntityWall {
         "vector": IVector2;
-    }
-    interface ExampleAnimator {
     }
     interface ExampleGame {
     }
@@ -45,7 +45,7 @@ export namespace Components {
     interface TgCamera {
         "followSpeed": number;
         "height": number;
-        "target": HTMLEntityPlayerElement | null;
+        "target": HTMLElement | null;
         "width": number;
     }
     interface TgCollider {
@@ -142,61 +142,61 @@ export namespace Components {
         "width": number;
     }
 }
-export interface EntityPlayerCustomEvent<T> extends CustomEvent<T> {
+export interface ExampleEntityPlayerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLEntityPlayerElement;
+    target: HTMLExampleEntityPlayerElement;
 }
 export interface TgColliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLTgColliderElement;
 }
 declare global {
-    interface HTMLEntityBoxElement extends Components.EntityBox, HTMLStencilElement {
-    }
-    var HTMLEntityBoxElement: {
-        prototype: HTMLEntityBoxElement;
-        new (): HTMLEntityBoxElement;
-    };
-    interface HTMLEntityGoalElement extends Components.EntityGoal, HTMLStencilElement {
-    }
-    var HTMLEntityGoalElement: {
-        prototype: HTMLEntityGoalElement;
-        new (): HTMLEntityGoalElement;
-    };
-    interface HTMLEntityLevelElement extends Components.EntityLevel, HTMLStencilElement {
-    }
-    var HTMLEntityLevelElement: {
-        prototype: HTMLEntityLevelElement;
-        new (): HTMLEntityLevelElement;
-    };
-    interface HTMLEntityPlayerElementEventMap {
-        "transition": boolean;
-    }
-    interface HTMLEntityPlayerElement extends Components.EntityPlayer, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLEntityPlayerElementEventMap>(type: K, listener: (this: HTMLEntityPlayerElement, ev: EntityPlayerCustomEvent<HTMLEntityPlayerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLEntityPlayerElementEventMap>(type: K, listener: (this: HTMLEntityPlayerElement, ev: EntityPlayerCustomEvent<HTMLEntityPlayerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLEntityPlayerElement: {
-        prototype: HTMLEntityPlayerElement;
-        new (): HTMLEntityPlayerElement;
-    };
-    interface HTMLEntityWallElement extends Components.EntityWall, HTMLStencilElement {
-    }
-    var HTMLEntityWallElement: {
-        prototype: HTMLEntityWallElement;
-        new (): HTMLEntityWallElement;
-    };
     interface HTMLExampleAnimatorElement extends Components.ExampleAnimator, HTMLStencilElement {
     }
     var HTMLExampleAnimatorElement: {
         prototype: HTMLExampleAnimatorElement;
         new (): HTMLExampleAnimatorElement;
+    };
+    interface HTMLExampleEntityBoxElement extends Components.ExampleEntityBox, HTMLStencilElement {
+    }
+    var HTMLExampleEntityBoxElement: {
+        prototype: HTMLExampleEntityBoxElement;
+        new (): HTMLExampleEntityBoxElement;
+    };
+    interface HTMLExampleEntityGoalElement extends Components.ExampleEntityGoal, HTMLStencilElement {
+    }
+    var HTMLExampleEntityGoalElement: {
+        prototype: HTMLExampleEntityGoalElement;
+        new (): HTMLExampleEntityGoalElement;
+    };
+    interface HTMLExampleEntityLevelElement extends Components.ExampleEntityLevel, HTMLStencilElement {
+    }
+    var HTMLExampleEntityLevelElement: {
+        prototype: HTMLExampleEntityLevelElement;
+        new (): HTMLExampleEntityLevelElement;
+    };
+    interface HTMLExampleEntityPlayerElementEventMap {
+        "transition": boolean;
+    }
+    interface HTMLExampleEntityPlayerElement extends Components.ExampleEntityPlayer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLExampleEntityPlayerElementEventMap>(type: K, listener: (this: HTMLExampleEntityPlayerElement, ev: ExampleEntityPlayerCustomEvent<HTMLExampleEntityPlayerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLExampleEntityPlayerElementEventMap>(type: K, listener: (this: HTMLExampleEntityPlayerElement, ev: ExampleEntityPlayerCustomEvent<HTMLExampleEntityPlayerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLExampleEntityPlayerElement: {
+        prototype: HTMLExampleEntityPlayerElement;
+        new (): HTMLExampleEntityPlayerElement;
+    };
+    interface HTMLExampleEntityWallElement extends Components.ExampleEntityWall, HTMLStencilElement {
+    }
+    var HTMLExampleEntityWallElement: {
+        prototype: HTMLExampleEntityWallElement;
+        new (): HTMLExampleEntityWallElement;
     };
     interface HTMLExampleGameElement extends Components.ExampleGame, HTMLStencilElement {
     }
@@ -266,12 +266,12 @@ declare global {
         new (): HTMLTgSpriteMapElement;
     };
     interface HTMLElementTagNameMap {
-        "entity-box": HTMLEntityBoxElement;
-        "entity-goal": HTMLEntityGoalElement;
-        "entity-level": HTMLEntityLevelElement;
-        "entity-player": HTMLEntityPlayerElement;
-        "entity-wall": HTMLEntityWallElement;
         "example-animator": HTMLExampleAnimatorElement;
+        "example-entity-box": HTMLExampleEntityBoxElement;
+        "example-entity-goal": HTMLExampleEntityGoalElement;
+        "example-entity-level": HTMLExampleEntityLevelElement;
+        "example-entity-player": HTMLExampleEntityPlayerElement;
+        "example-entity-wall": HTMLExampleEntityWallElement;
         "example-game": HTMLExampleGameElement;
         "example-sprite": HTMLExampleSpriteElement;
         "example-sprite-map": HTMLExampleSpriteMapElement;
@@ -283,24 +283,24 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface EntityBox {
+    interface ExampleAnimator {
+    }
+    interface ExampleEntityBox {
         "vector"?: IVector2;
     }
-    interface EntityGoal {
+    interface ExampleEntityGoal {
         "vector"?: IVector2;
     }
-    interface EntityLevel {
+    interface ExampleEntityLevel {
     }
-    interface EntityPlayer {
+    interface ExampleEntityPlayer {
         "direction"?: 'down' | 'right' | 'up' | 'left';
-        "onTransition"?: (event: EntityPlayerCustomEvent<boolean>) => void;
+        "onTransition"?: (event: ExampleEntityPlayerCustomEvent<boolean>) => void;
         "type"?: 'idle' | 'walk';
         "vector"?: IVector2;
     }
-    interface EntityWall {
+    interface ExampleEntityWall {
         "vector"?: IVector2;
-    }
-    interface ExampleAnimator {
     }
     interface ExampleGame {
     }
@@ -311,7 +311,7 @@ declare namespace LocalJSX {
     interface TgCamera {
         "followSpeed"?: number;
         "height"?: number;
-        "target"?: HTMLEntityPlayerElement | null;
+        "target"?: HTMLElement | null;
         "width"?: number;
     }
     interface TgCollider {
@@ -404,12 +404,12 @@ declare namespace LocalJSX {
         "width"?: number;
     }
     interface IntrinsicElements {
-        "entity-box": EntityBox;
-        "entity-goal": EntityGoal;
-        "entity-level": EntityLevel;
-        "entity-player": EntityPlayer;
-        "entity-wall": EntityWall;
         "example-animator": ExampleAnimator;
+        "example-entity-box": ExampleEntityBox;
+        "example-entity-goal": ExampleEntityGoal;
+        "example-entity-level": ExampleEntityLevel;
+        "example-entity-player": ExampleEntityPlayer;
+        "example-entity-wall": ExampleEntityWall;
         "example-game": ExampleGame;
         "example-sprite": ExampleSprite;
         "example-sprite-map": ExampleSpriteMap;
@@ -424,12 +424,12 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "entity-box": LocalJSX.EntityBox & JSXBase.HTMLAttributes<HTMLEntityBoxElement>;
-            "entity-goal": LocalJSX.EntityGoal & JSXBase.HTMLAttributes<HTMLEntityGoalElement>;
-            "entity-level": LocalJSX.EntityLevel & JSXBase.HTMLAttributes<HTMLEntityLevelElement>;
-            "entity-player": LocalJSX.EntityPlayer & JSXBase.HTMLAttributes<HTMLEntityPlayerElement>;
-            "entity-wall": LocalJSX.EntityWall & JSXBase.HTMLAttributes<HTMLEntityWallElement>;
             "example-animator": LocalJSX.ExampleAnimator & JSXBase.HTMLAttributes<HTMLExampleAnimatorElement>;
+            "example-entity-box": LocalJSX.ExampleEntityBox & JSXBase.HTMLAttributes<HTMLExampleEntityBoxElement>;
+            "example-entity-goal": LocalJSX.ExampleEntityGoal & JSXBase.HTMLAttributes<HTMLExampleEntityGoalElement>;
+            "example-entity-level": LocalJSX.ExampleEntityLevel & JSXBase.HTMLAttributes<HTMLExampleEntityLevelElement>;
+            "example-entity-player": LocalJSX.ExampleEntityPlayer & JSXBase.HTMLAttributes<HTMLExampleEntityPlayerElement>;
+            "example-entity-wall": LocalJSX.ExampleEntityWall & JSXBase.HTMLAttributes<HTMLExampleEntityWallElement>;
             "example-game": LocalJSX.ExampleGame & JSXBase.HTMLAttributes<HTMLExampleGameElement>;
             "example-sprite": LocalJSX.ExampleSprite & JSXBase.HTMLAttributes<HTMLExampleSpriteElement>;
             "example-sprite-map": LocalJSX.ExampleSpriteMap & JSXBase.HTMLAttributes<HTMLExampleSpriteMapElement>;

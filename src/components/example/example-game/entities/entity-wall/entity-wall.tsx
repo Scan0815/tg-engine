@@ -2,7 +2,7 @@ import { Prop, Component, Host, h } from '@stencil/core';
 import { IVector2, Vector2 } from '../../../../interfaces/IVector2';
 
 @Component({
-  tag: 'entity-wall',
+  tag: 'example-entity-wall',
   styleUrl: 'entity-wall.scss',
   shadow: true,
 })

@@ -38,15 +38,15 @@ Type: `Promise<string>`
 
 ### Used by
 
- - [entity-player](../../example/example-game/entities/entity-player)
  - [example-animator](../../example/example-animator)
+ - [example-entity-player](../../example/example-game/entities/entity-player)
  - [tg-sprite-map](../tg-sprite-map)
 
 ### Graph
 ```mermaid
 graph TD;
-  entity-player --> tg-sprite-animator
   example-animator --> tg-sprite-animator
+  example-entity-player --> tg-sprite-animator
   tg-sprite-map --> tg-sprite-animator
   style tg-sprite-animator fill:#f9f,stroke:#333,stroke-width:4px
 ```

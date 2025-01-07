@@ -6,7 +6,7 @@ import { Component, ComponentInterface, h, Host, Prop, State } from '@stencil/co
   shadow: true,
 })
 export class TgCamera implements ComponentInterface {
-  @Prop() target: HTMLEntityPlayerElement | null = null;
+  @Prop() target: HTMLElement | null = null;
   @Prop() width: number;
   @Prop() height: number;
   @Prop() followSpeed: number = 0.1;

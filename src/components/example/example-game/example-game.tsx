@@ -12,9 +12,9 @@ export class ExampleGame implements ComponentInterface {
 
   @Element() el: HTMLExampleGameElement;
 
-  private player: HTMLEntityPlayerElement;
+  private player: HTMLExampleEntityPlayerElement;
   private camera: HTMLTgCameraElement;
-  private boxesInGoal: HTMLEntityBoxElement[] = [];
+  private boxesInGoal: HTMLExampleEntityBoxElement[] = [];
   private playerTransition: boolean = false;
   @Listen('keydown', { target: 'window' })
   async handleKeyDown(ev: KeyboardEvent) {
@@ -44,7 +44,7 @@ export class ExampleGame implements ComponentInterface {
     if (colliding) {
       switch (colliding.name) {
         case 'box':
-          const box = colliding.el.offsetParent as HTMLEntityBoxElement;
+          const box = colliding.el.offsetParent as HTMLExampleEntityBoxElement;
           const movedBox = await this.moveBox(box, direction);
           if (movedBox) {
             this.player.vector = vector;
@@ -66,11 +66,11 @@ export class ExampleGame implements ComponentInterface {
   }
 
   async checkWin() {
-    const boxes = this.el.shadowRoot.querySelectorAll('entity-box');
-    const goals = this.el.shadowRoot.querySelectorAll('entity-goal');
+    const boxes = this.el.shadowRoot.querySelectorAll('example-entity-box');
+    const goals = this.el.shadowRoot.querySelectorAll('example-entity-goal');
     if (boxes.length === goals.length) {
-      this.boxesInGoal = Array.from(boxes).filter((box: HTMLEntityBoxElement) => {
-        return Array.from(goals).some((goal: HTMLEntityGoalElement) => {
+      this.boxesInGoal = Array.from(boxes).filter((box: HTMLExampleEntityBoxElement) => {
+        return Array.from(goals).some((goal: HTMLExampleEntityGoalElement) => {
           return box.vector.x === goal.vector.x && box.vector.y === goal.vector.y;
         });
       });
@@ -80,7 +80,7 @@ export class ExampleGame implements ComponentInterface {
     }
   }
 
-  async moveBox(box: HTMLEntityBoxElement, direction: 'up' | 'down' | 'left' | 'right') {
+  async moveBox(box: HTMLExampleEntityBoxElement, direction: 'up' | 'down' | 'left' | 'right') {
     const oldVector = new Vector2(box.vector.x, box.vector.y);
     const vector = MoveToDirection(direction, box.vector);
     const colliders = await ColliderManager.getInstance().checkCollisionOnPosition(vector.x, vector.y, 70, 70);
@@ -112,54 +112,54 @@ export class ExampleGame implements ComponentInterface {
     return (
       <Host>
         <tg-camera ref={ref => this.camera = ref} width={600} height={600}>
-          <entity-level />
-          <entity-wall vector={new Vector2(0, 0)} />
-          <entity-wall vector={new Vector2(TilePos(1), 0)} />
-          <entity-wall vector={new Vector2(TilePos(2), 0)} />
-          <entity-wall vector={new Vector2(TilePos(3), 0)} />
-          <entity-wall vector={new Vector2(TilePos(4), 0)} />
-          <entity-wall vector={new Vector2(TilePos(5), 0)} />
-          <entity-wall vector={new Vector2(TilePos(6), 0)} />
-          <entity-wall vector={new Vector2(TilePos(7), 0)} />
-          <entity-wall vector={new Vector2(TilePos(8), 0)} />
-          <entity-wall vector={new Vector2(TilePos(9), 0)} />
+          <example-entity-level />
+          <example-entity-wall vector={new Vector2(0, 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(1), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(2), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(3), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(4), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(5), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(6), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(7), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(8), 0)} />
+          <example-entity-wall vector={new Vector2(TilePos(9), 0)} />
 
-          <entity-wall vector={new Vector2(0, TilePos(1))} />
-          <entity-wall vector={new Vector2(0, TilePos(2))} />
-          <entity-wall vector={new Vector2(0, TilePos(3))} />
-          <entity-wall vector={new Vector2(0, TilePos(4))} />
-          <entity-wall vector={new Vector2(0, TilePos(5))} />
-          <entity-wall vector={new Vector2(0, TilePos(6))} />
-          <entity-wall vector={new Vector2(0, TilePos(7))} />
-          <entity-wall vector={new Vector2(0, TilePos(8))} />
-          <entity-wall vector={new Vector2(0, TilePos(9))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(1))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(2))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(3))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(4))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(5))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(6))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(7))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(8))} />
+          <example-entity-wall vector={new Vector2(0, TilePos(9))} />
 
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(1))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(2))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(3))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(4))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(5))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(6))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(7))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(8))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(1))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(2))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(3))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(4))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(5))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(6))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(7))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(8))} />
 
-          <entity-wall vector={new Vector2(TilePos(1), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(2), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(3), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(4), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(5), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(6), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(7), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(8), TilePos(9))} />
-          <entity-wall vector={new Vector2(TilePos(9), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(1), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(2), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(3), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(4), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(5), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(6), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(7), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(8), TilePos(9))} />
+          <example-entity-wall vector={new Vector2(TilePos(9), TilePos(9))} />
 
-          <entity-box vector={new Vector2(TilePos(4), TilePos(4))} />
-          <entity-box vector={new Vector2(TilePos(6), TilePos(6))} />
+          <example-entity-box vector={new Vector2(TilePos(4), TilePos(4))} />
+          <example-entity-box vector={new Vector2(TilePos(6), TilePos(6))} />
 
-          <entity-goal vector={new Vector2(TilePos(8), TilePos(7))} />
-          <entity-goal vector={new Vector2(TilePos(8), TilePos(8))} />
+          <example-entity-goal vector={new Vector2(TilePos(8), TilePos(7))} />
+          <example-entity-goal vector={new Vector2(TilePos(8), TilePos(8))} />
 
-          <entity-player ref={ref => this.player = ref}
+          <example-entity-player ref={ref => this.player = ref}
                          type="idle"
                          direction="down"
                          onTransition={(ev) => this.playerTransition =  ev.detail}

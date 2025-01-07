@@ -1,7 +1,7 @@
 import { ComponentInterface, Component, Host, h } from '@stencil/core';
 
 @Component({
-  tag: 'entity-level',
+  tag: 'example-entity-level',
   styleUrl: 'entity-level.scss',
   shadow: true,
 })

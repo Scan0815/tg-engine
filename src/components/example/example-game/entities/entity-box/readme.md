@@ -1,4 +1,4 @@
-# entity-wall
+# entity-box
 
 
 
@@ -25,9 +25,9 @@
 ### Graph
 ```mermaid
 graph TD;
-  example-entity-wall --> tg-collider
-  example-game --> example-entity-wall
-  style example-entity-wall fill:#f9f,stroke:#333,stroke-width:4px
+  example-entity-box --> tg-collider
+  example-game --> example-entity-box
+  style example-entity-box fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

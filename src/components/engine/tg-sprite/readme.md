@@ -29,16 +29,16 @@ It takes in the following properties:
 
 ### Used by
 
- - [entity-player](../../example/example-game/entities/entity-player)
  - [example-animator](../../example/example-animator)
+ - [example-entity-player](../../example/example-game/entities/entity-player)
  - [example-sprite](../../example/example-sprite)
  - [tg-sprite-map](../tg-sprite-map)
 
 ### Graph
 ```mermaid
 graph TD;
-  entity-player --> tg-sprite
   example-animator --> tg-sprite
+  example-entity-player --> tg-sprite
   example-sprite --> tg-sprite
   tg-sprite-map --> tg-sprite
   style tg-sprite fill:#f9f,stroke:#333,stroke-width:4px

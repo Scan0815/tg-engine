@@ -2,7 +2,7 @@ import { Prop,Component, Host, h } from '@stencil/core';
 import { IVector2, Vector2 } from '../../../../interfaces/IVector2';
 
 @Component({
-  tag: 'entity-box',
+  tag: 'example-entity-box',
   styleUrl: 'entity-box.scss',
   shadow: true,
 })

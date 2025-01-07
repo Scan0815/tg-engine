@@ -55,18 +55,18 @@ Type: `Promise<TgCollider>`
 
 ### Used by
 
- - [entity-box](../../example/example-game/entities/entity-box)
- - [entity-goal](../../example/example-game/entities/entity-goal)
- - [entity-player](../../example/example-game/entities/entity-player)
- - [entity-wall](../../example/example-game/entities/entity-wall)
+ - [example-entity-box](../../example/example-game/entities/entity-box)
+ - [example-entity-goal](../../example/example-game/entities/entity-goal)
+ - [example-entity-player](../../example/example-game/entities/entity-player)
+ - [example-entity-wall](../../example/example-game/entities/entity-wall)
 
 ### Graph
 ```mermaid
 graph TD;
-  entity-box --> tg-collider
-  entity-goal --> tg-collider
-  entity-player --> tg-collider
-  entity-wall --> tg-collider
+  example-entity-box --> tg-collider
+  example-entity-goal --> tg-collider
+  example-entity-player --> tg-collider
+  example-entity-wall --> tg-collider
   style tg-collider fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

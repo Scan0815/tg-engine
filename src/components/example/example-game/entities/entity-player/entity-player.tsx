@@ -2,7 +2,7 @@ import { Event, Component, ComponentInterface, h, Host, Method, Prop, Element, E
 import { IVector2, Vector2 } from '../../../../interfaces/IVector2';
 
 @Component({
-  tag: 'entity-player',
+  tag: 'example-entity-player',
   styleUrl: 'entity-player.scss',
   shadow: true,
 })
