@@ -33,6 +33,7 @@ export class TgSpriteAnimator implements ComponentInterface {
   /** the current animation*/
   private currentAnimation: string;
   private animationFrameId: number | null = null;
+
   /** Watch for changes in the play prop*/
   @Watch('play')
   watchHandler() {
@@ -60,7 +61,6 @@ export class TgSpriteAnimator implements ComponentInterface {
     if (this.animationFrameId !== null) {
       cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
-      console.log('cancel animation');
     }
 
     const totalFrames = frames.length;
@@ -89,30 +89,22 @@ export class TgSpriteAnimator implements ComponentInterface {
       const {
         offsetX,
         offsetY,
-      } = CalculateOffset(spriteElement.width, spriteElement.height, spriteElement.scale, animation.frames[currentFrame], spriteElement.hFrames)
+      } = CalculateOffset(spriteElement.width, spriteElement.height, spriteElement.scale, animation.frames[currentFrame], spriteElement.hFrames);
       // Setze die Hintergrundposition
       spriteElement.style.backgroundPosition = `${offsetX}px ${offsetY}px`;
 
       // Wiederhole die Animation, falls `loop` aktiviert ist
       this.animationFrameId = requestAnimationFrame((timestamp) => step(timestamp));
-    }
+    };
 
     requestAnimationFrame((timestamp) => step(timestamp));
   }
 
 
-
-  /** Function to add animation dynamically
-   Create a keyframe animation and add it to the sprite element over the slot
-   return the css style for the animation*/
-  private addAnimation(spriteElement: HTMLTgSpriteElement, name: string) {
-    this.animate(spriteElement, this.animations[name]);
-  }
-
   /** Update the class on the slotted sprite component to change the animation */
   private updateAnimationClass(animationName: string) {
     if (this.spriteElement && this.animations[animationName]) {
-      this.addAnimation(this.spriteElement, animationName);
+      this.animate(this.spriteElement, this.animations[animationName]);
       if (this.currentAnimation) this.spriteElement.classList.remove(this.currentAnimation);
       this.spriteElement.classList.add(animationName);
       this.currentAnimation = animationName;
