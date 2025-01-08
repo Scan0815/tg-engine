@@ -28,7 +28,6 @@ export class TgSpriteAnimator implements ComponentInterface {
   @State() height: number = 0;
   /** the host element*/
   @Element() el!: HTMLElement;
-
   /** the sprite element*/
   private spriteElement: HTMLTgSpriteElement;
   /** the current animation*/
@@ -37,28 +36,26 @@ export class TgSpriteAnimator implements ComponentInterface {
   /** Watch for changes in the play prop*/
   @Watch('play')
   watchHandler() {
-      this.style = this.updateAnimationClass(this.play);
+      this.updateAnimationClass(this.play);
   }
 
   /** watch for changed state prop*/
   @Watch('state')
   watchStateHandler() {
-      this.style = this.updateAnimationClass(this.play);
+      this.updateAnimationClass(this.play);
   }
 
   /** trigger if the sprite component hast changed props
    that used for animation like scale*/
   @Method()
   async refresh() {
-    this.style = this.updateAnimationClass(this.play);
+    this.updateAnimationClass(this.play);
     return Promise.resolve(this.style);
   }
 
-  /** Function to add animation dynamically
-   Create a keyframe animation and add it to the sprite element over the slot
-   return the css style for the animation*/
-  private addAnimation(spriteElement: HTMLTgSpriteElement, name: string, frames: number[], duration: number, iterationCount: 'infinite' | number = 'infinite') {
-    const keyFrames = `@keyframes animation_${name} {${frames.map((frame, index) => {
+
+  private buildKeyFrame(spriteElement: HTMLTgSpriteElement, name: string, frames: number[]){
+    let keyFrames = `@keyframes animation_${name} {${frames.map((frame, index) => {
       const {
         offsetX,
         offsetY,
@@ -68,33 +65,34 @@ export class TgSpriteAnimator implements ComponentInterface {
         return `${percent}% { background-position: ${offsetX}px ${offsetY}px; }`;
       }
     }).join(' ')}};`;
-    const style = document.createElement('style');
+    const style = spriteElement.querySelector('style#animation') || document.createElement('style');
+    style.id="animation";
     style.innerHTML = keyFrames;
-    if (spriteElement) {
+    if (spriteElement && !spriteElement.querySelector('style#animation')) {
       spriteElement.appendChild(style);
     }
-    return `::slotted(tg-sprite.${name}) {
-     animation-name: animation_${name};
-     animation-duration: ${duration * frames.length}ms;
-     animation-iteration-count: ${iterationCount};
-     animation-fill-mode: forwards;
-     animation-play-state: ${this.state};
-     animation-direction: normal;
-     animation-delay: 0s;
-     animation-timing-function: steps(${frames.length}, jump-none);
-    }`;
+  }
+
+
+  /** Function to add animation dynamically
+   Create a keyframe animation and add it to the sprite element over the slot
+   return the css style for the animation*/
+  private addAnimation(spriteElement: HTMLTgSpriteElement, name: string, frames: number[], duration: number, iterationCount: 'infinite' | number = 'infinite') {
+    // Add the animation to the sprite element fix for safari
+    this.buildKeyFrame(spriteElement, name, frames);
+    this.spriteElement.style.animation = "none";
+    void this.el.offsetWidth; // Force Reflow
+    this.spriteElement.style.animation = `animation_${name} ${duration * frames.length}ms steps(${frames.length}, jump-none) ${iterationCount} forwards normal ${this.state} 0s`;
   }
 
   /** Update the class on the slotted sprite component to change the animation */
   private updateAnimationClass(animationName: string) {
-    let result = '';
     if (this.spriteElement && this.animations[animationName]) {
-      result = this.addAnimation(this.spriteElement, animationName, this.animations[animationName].frames, this.animations[animationName]?.duration || 200, this.iterationCount);
+      this.addAnimation(this.spriteElement, animationName, this.animations[animationName].frames, this.animations[animationName]?.duration || 200, this.iterationCount);
       if (this.currentAnimation) this.spriteElement.classList.remove(this.currentAnimation);
       this.spriteElement.classList.add(animationName);
       this.currentAnimation = animationName;
     }
-    return result;
   }
 
   /** Check if the slot has changed*/
@@ -103,14 +101,13 @@ export class TgSpriteAnimator implements ComponentInterface {
     const assignedElements = slot.assignedElements();
     if (assignedElements.length > 0) {
       this.spriteElement = assignedElements[0] as HTMLTgSpriteElement;
-      this.style = this.updateAnimationClass(this.play);
+      this.updateAnimationClass(this.play);
     }
   }
 
   render() {
     return (
       <Host>
-        <style>{this.style}</style>
         <slot onSlotchange={ev => this.checkSlotChanged(ev)}></slot>
       </Host>
     );
