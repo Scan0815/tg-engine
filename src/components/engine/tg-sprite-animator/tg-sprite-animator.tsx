@@ -32,7 +32,7 @@ export class TgSpriteAnimator implements ComponentInterface {
   private spriteElement: HTMLTgSpriteElement;
   /** the current animation*/
   private currentAnimation: string;
-
+  private animationFrameId: number | null = null;
   /** Watch for changes in the play prop*/
   @Watch('play')
   watchHandler() {
@@ -54,41 +54,65 @@ export class TgSpriteAnimator implements ComponentInterface {
   }
 
 
-  private buildKeyFrame(spriteElement: HTMLTgSpriteElement, name: string, frames: number[]) {
-    let keyFrames = `@keyframes animation_${name} {${frames.map((frame, index) => {
+  private animate(spriteElement: HTMLTgSpriteElement, animation: IAnimation) {
+    const { frames, duration = 100, loop = true } = animation;
+    // Bestehende Animation abbrechen
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+      console.log('cancel animation');
+    }
+
+    const totalFrames = frames.length;
+    let currentFrame = 0;
+    let lastFrameTime: number | null = null;
+
+    const step = (timestamp: number) => {
+      if (lastFrameTime === null) lastFrameTime = timestamp;
+      const elapsed = timestamp - lastFrameTime;
+
+      // Berechnung des Fortschritts
+      if (elapsed >= duration) {
+        currentFrame++;
+        lastFrameTime = timestamp;
+        // Falls das Ende der Frames erreicht ist
+        if (currentFrame >= totalFrames) {
+          if (loop) {
+            currentFrame = 0; // Zurück zum ersten Frame
+          } else {
+            this.animationFrameId = null; // Stoppe die Animation
+            return;
+          }
+        }
+      }
+
       const {
         offsetX,
         offsetY,
-      } = CalculateOffset(spriteElement.width, spriteElement.height, spriteElement.scale, frame, spriteElement.hFrames);
-      const percent = (index / (frames.length - 1)) * 100;
-      if (percent === 100 || percent === 0) {
-        return `${percent}% { background-position: ${offsetX}px ${offsetY}px; }`;
-      }
-    }).join(' ')}};`;
-    const style = spriteElement.querySelector('style#animation') || document.createElement('style');
-    style.id = 'animation';
-    style.innerHTML = keyFrames;
-    if (spriteElement && !spriteElement.querySelector('style#animation')) {
-      spriteElement.appendChild(style);
+      } = CalculateOffset(spriteElement.width, spriteElement.height, spriteElement.scale, animation.frames[currentFrame], spriteElement.hFrames)
+      // Setze die Hintergrundposition
+      spriteElement.style.backgroundPosition = `${offsetX}px ${offsetY}px`;
+
+      // Wiederhole die Animation, falls `loop` aktiviert ist
+      this.animationFrameId = requestAnimationFrame((timestamp) => step(timestamp));
     }
+
+    requestAnimationFrame((timestamp) => step(timestamp));
   }
+
 
 
   /** Function to add animation dynamically
    Create a keyframe animation and add it to the sprite element over the slot
    return the css style for the animation*/
-  private addAnimation(spriteElement: HTMLTgSpriteElement, name: string, frames: number[], duration: number, iterationCount: 'infinite' | number = 'infinite') {
-    this.buildKeyFrame(spriteElement, name, frames);
-    // Add the animation to the sprite element fix for safari
-    this.spriteElement.style.animation = 'none';
-    void this.el.offsetWidth; // Force Reflow
-    this.spriteElement.style.animation = `animation_${name} ${duration * frames.length}ms steps(${frames.length}, jump-none) ${iterationCount} forwards normal ${this.state} 0s`;
+  private addAnimation(spriteElement: HTMLTgSpriteElement, name: string) {
+    this.animate(spriteElement, this.animations[name]);
   }
 
   /** Update the class on the slotted sprite component to change the animation */
   private updateAnimationClass(animationName: string) {
     if (this.spriteElement && this.animations[animationName]) {
-      this.addAnimation(this.spriteElement, animationName, this.animations[animationName].frames, this.animations[animationName]?.duration || 200, this.iterationCount);
+      this.addAnimation(this.spriteElement, animationName);
       if (this.currentAnimation) this.spriteElement.classList.remove(this.currentAnimation);
       this.spriteElement.classList.add(animationName);
       this.currentAnimation = animationName;
