@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, ComponentInterface, State, Watch, Method } from '@stencil/core';
+import { Component, ComponentInterface, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { CalculateOffset } from '../../../utils/utils';
 import { IAnimation } from '../../interfaces/IAnimation';
 
@@ -36,13 +36,13 @@ export class TgSpriteAnimator implements ComponentInterface {
   /** Watch for changes in the play prop*/
   @Watch('play')
   watchHandler() {
-      this.updateAnimationClass(this.play);
+    this.updateAnimationClass(this.play);
   }
 
   /** watch for changed state prop*/
   @Watch('state')
   watchStateHandler() {
-      this.updateAnimationClass(this.play);
+    this.updateAnimationClass(this.play);
   }
 
   /** trigger if the sprite component hast changed props
@@ -54,7 +54,7 @@ export class TgSpriteAnimator implements ComponentInterface {
   }
 
 
-  private buildKeyFrame(spriteElement: HTMLTgSpriteElement, name: string, frames: number[]){
+  private buildKeyFrame(spriteElement: HTMLTgSpriteElement, name: string, frames: number[]) {
     let keyFrames = `@keyframes animation_${name} {${frames.map((frame, index) => {
       const {
         offsetX,
@@ -66,7 +66,7 @@ export class TgSpriteAnimator implements ComponentInterface {
       }
     }).join(' ')}};`;
     const style = spriteElement.querySelector('style#animation') || document.createElement('style');
-    style.id="animation";
+    style.id = 'animation';
     style.innerHTML = keyFrames;
     if (spriteElement && !spriteElement.querySelector('style#animation')) {
       spriteElement.appendChild(style);
@@ -78,9 +78,9 @@ export class TgSpriteAnimator implements ComponentInterface {
    Create a keyframe animation and add it to the sprite element over the slot
    return the css style for the animation*/
   private addAnimation(spriteElement: HTMLTgSpriteElement, name: string, frames: number[], duration: number, iterationCount: 'infinite' | number = 'infinite') {
-    // Add the animation to the sprite element fix for safari
     this.buildKeyFrame(spriteElement, name, frames);
-    this.spriteElement.style.animation = "none";
+    // Add the animation to the sprite element fix for safari
+    this.spriteElement.style.animation = 'none';
     void this.el.offsetWidth; // Force Reflow
     this.spriteElement.style.animation = `animation_${name} ${duration * frames.length}ms steps(${frames.length}, jump-none) ${iterationCount} forwards normal ${this.state} 0s`;
   }
