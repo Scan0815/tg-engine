@@ -10,7 +10,6 @@ describe('tg-sprite-animator', () => {
     expect(page.root).toEqualHtml(`
       <tg-sprite-animator>
         <mock:shadow-root>
-          <style></style>
           <slot></slot>
         </mock:shadow-root>
       </tg-sprite-animator>

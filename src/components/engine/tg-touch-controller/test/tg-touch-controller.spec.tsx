@@ -8,7 +8,7 @@ describe('tg-touch-controller', () => {
       html: `<tg-touch-controller></tg-touch-controller>`,
     });
     expect(page.root).toEqualHtml(`
-      <tg-touch-controller>
+      <tg-touch-controller class="touch-area">
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>

@@ -56,12 +56,16 @@ export class TgCamera implements ComponentInterface {
       transform: `translate(${this.offsetX}px, ${this.offsetY}px)`,
     };
 
+    const hostStyle = {};
+    if (this.width !== undefined) {
+      hostStyle['width'] = `${this.width}px`;
+    }
+    if (this.height !== undefined) {
+      hostStyle['height'] = `${this.height}px`;
+    }
+
     return (
-      <Host class="camera"
-            style={{
-              width: `${this.width}px`,
-              height: `${this.height}px`,
-            }}>
+      <Host class="camera" style={hostStyle}>
         <div class="camera-content" ref={ref => this.cameraContent = ref} style={style}>
           <slot></slot>
         </div>
