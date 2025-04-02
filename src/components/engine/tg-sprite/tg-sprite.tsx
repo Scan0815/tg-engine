@@ -41,13 +41,18 @@ export class TgSprite implements ComponentInterface {
     const scaleX = this.hFlip ? -1 : 1;
     const scaleY = this.vFlip ? -1 : 1;
     const { offsetX, offsetY } = CalculateOffset(this.width, this.height, this.scale, this.currentFrame, this.hFrames);
+
+    // Handle invalid frame counts
+    const effectiveHFrames = Math.max(1, this.hFrames);
+    const effectiveVFrames = Math.max(1, this.vFrames);
+
     return {
       width: `${this.width * this.scale}${this.width > 0 ? "px" : ""}`,
       height: `${this.height * this.scale}${this.height > 0 ? "px" : ""}`,
       transform: `scale(${scaleX}, ${scaleY})`,
       backgroundImage: `url(${this.src})`,
       backgroundRepeat: 'no-repeat',
-      backgroundSize: `${(this.height * this.hFrames) * this.scale}px ${(this.width * this.vFrames) * this.scale}px`,
+      backgroundSize: `${(this.height * effectiveHFrames) * this.scale}px ${(this.width * effectiveVFrames) * this.scale}px`,
       backgroundPosition: `${offsetX}${offsetX != 0 ? "px" : ""} ${offsetY}${offsetY != 0 ? "px" : ""}`,
     };
   }

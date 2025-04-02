@@ -110,4 +110,100 @@ describe('tg-sprite', () => {
       </tg-sprite>
     `);
   });
+
+  it('renders with negative scale', async () => {
+    const page = await newSpecPage({
+      components: [TgSprite],
+      template: () => (
+        <tg-sprite scale={-1}></tg-sprite>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+      <tg-sprite style="width: -16px; height: -16px; transform: scale(1, 1); background-image: url(); background-repeat: no-repeat; background-size: -16px -16px; background-position: 0 0;">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+      </tg-sprite>
+    `);
+  });
+
+  it('renders with multiple frames in sprite sheet', async () => {
+    const page = await newSpecPage({
+      components: [TgSprite],
+      template: () => (
+        <tg-sprite src="test.png" width={16} height={16} hFrames={4} vFrames={4} frame={5}></tg-sprite>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+      <tg-sprite style="width: 16px; height: 16px; transform: scale(1, 1); background-image: url(test.png); background-repeat: no-repeat; background-size: 64px 64px; background-position: -16px -16px;">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+      </tg-sprite>
+    `);
+  });
+
+  it('renders with both horizontal and vertical flips', async () => {
+    const page = await newSpecPage({
+      components: [TgSprite],
+      template: () => (
+        <tg-sprite hFlip={true} vFlip={true}></tg-sprite>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+      <tg-sprite style="width: 16px; height: 16px; transform: scale(-1, -1); background-image: url(); background-repeat: no-repeat; background-size: 16px 16px; background-position: 0 0;">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+      </tg-sprite>
+    `);
+  });
+
+  it('handles empty src gracefully', async () => {
+    const page = await newSpecPage({
+      components: [TgSprite],
+      template: () => (
+        <tg-sprite src=""></tg-sprite>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+      <tg-sprite style="width: 16px; height: 16px; transform: scale(1, 1); background-image: url(); background-repeat: no-repeat; background-size: 16px 16px; background-position: 0 0;">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+      </tg-sprite>
+    `);
+  });
+
+  it('handles negative frame numbers', async () => {
+    const page = await newSpecPage({
+      components: [TgSprite],
+      template: () => (
+        <tg-sprite frame={-1}></tg-sprite>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+      <tg-sprite style="width: 16px; height: 16px; transform: scale(1, 1); background-image: url(); background-repeat: no-repeat; background-size: 16px 16px; background-position: 0 16px;">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+      </tg-sprite>
+    `);
+  });
+
+  it('handles zero frames in sprite sheet', async () => {
+    const page = await newSpecPage({
+      components: [TgSprite],
+      template: () => (
+        <tg-sprite hFrames={0} vFrames={0}></tg-sprite>
+      ),
+    });
+    expect(page.root).toEqualHtml(`
+      <tg-sprite style="width: 16px; height: 16px; transform: scale(1, 1); background-image: url(); background-repeat: no-repeat; background-size: 16px 16px; background-position: 0 0;">
+        <mock:shadow-root>
+          <slot></slot>
+        </mock:shadow-root>
+      </tg-sprite>
+    `);
+  });
 });
