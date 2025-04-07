@@ -11,7 +11,6 @@
 
 export {ColliderManager} from './components/manager/collider.manager';
 export {Vector2} from './components/interfaces/IVector2';
-
 export {IVector2} from './components/interfaces/IVector2';
 export {IAnimation} from './components/interfaces/IAnimation';
 export {ITile} from './components/interfaces/ITile';
