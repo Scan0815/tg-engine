@@ -83,6 +83,14 @@ jobs:
         echo "$CHANGES" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
 
+    - name: Create release zip
+      run: |
+        mkdir -p release
+        cp -r dist loader release/
+        cd release
+        zip -r ../tg-engine-v${{ steps.get_version.outputs.version }}.zip .
+        cd ..
+
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
@@ -96,8 +104,7 @@ jobs:
           ### Full commit message
           ${{ github.event.head_commit.message }}
         files: |
-          dist/**/*.{js,cjs,json,d.ts}
-          loader/**/*.{js,cjs,json,d.ts}
+          tg-engine-v${{ steps.get_version.outputs.version }}.zip
         draft: false
         prerelease: false
         generate_release_notes: true
