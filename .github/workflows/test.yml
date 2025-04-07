@@ -9,18 +9,37 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+      image: node:lts-alpine
+      options: --privileged
 
     steps:
     - uses: actions/checkout@v3
-
+    
+    - name: Install dependencies
+      run: |
+        apk add --no-cache \
+          chromium \
+          nss \
+          freetype \
+          freetype-dev \
+          harfbuzz \
+          ca-certificates \
+          ttf-freefont \
+          nodejs \
+          yarn
+    
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '22'
         cache: 'npm'
-
+    
     - name: Install dependencies
       run: npm ci
-
+    
     - name: Run tests
+      env:
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+        PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
       run: npm test
