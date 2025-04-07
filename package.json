@@ -1,6 +1,6 @@
 {
   "name": "tg-engine",
-  "version": "1.0.8",
+  "version": "0.1.0-ALPHA",
   "description": "a small sprite game engine for typescript, build with stenciljs, ALPHA VERSION",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -61,7 +61,7 @@
     "@types/node": "^22.10.5",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
-    "puppeteer": "^21.9.0",
+    "puppeteer": "^24.6.0",
     "@stencil/sass": "^3.2.0"
   },
   "license": "MIT"

@@ -7,6 +7,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [example-page](../example-page)
+
 ### Depends on
 
 - [tg-touch-controller](../../engine/tg-touch-controller)
@@ -36,6 +40,7 @@ graph TD;
   example-entity-player --> tg-collider
   example-entity-player --> tg-sprite-animator
   example-entity-player --> tg-sprite
+  example-page --> example-game
   style example-game fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -9,7 +9,7 @@
 
 | Property | Attribute | Description | Type       | Default             |
 | -------- | --------- | ----------- | ---------- | ------------------- |
-| `vector` | --        |             | `IVector2` | `new Vector2(0, 0)` |
+| `vector` | `vector`  |             | `IVector2` | `new Vector2(0, 0)` |
 
 
 ## Dependencies
