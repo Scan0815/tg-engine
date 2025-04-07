@@ -96,12 +96,8 @@ jobs:
           ### Full commit message
           ${{ github.event.head_commit.message }}
         files: |
-          dist/**/*.js
-          dist/**/*.d.ts
-          dist/**/*.json
-          loader/**/*.js
-          loader/**/*.cjs
-          loader/**/*.d.ts
+          dist/**/*.{js,cjs,json,d.ts}
+          loader/**/*.{js,cjs,json,d.ts}
         draft: false
         prerelease: false
         generate_release_notes: true
