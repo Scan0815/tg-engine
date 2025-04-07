@@ -9,13 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image: node:lts-alpine
-      options: --privileged
-
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Install dependencies
       run: |
         apk add --no-cache \
@@ -28,16 +24,16 @@ jobs:
           ttf-freefont \
           nodejs \
           yarn
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '22'
         cache: 'npm'
-    
+
     - name: Install dependencies
       run: npm ci
-    
+
     - name: Run tests
       env:
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
@@ -47,13 +43,10 @@ jobs:
   build-and-release:
     needs: test
     runs-on: ubuntu-latest
-    container:
-      image: node:lts-alpine
-      options: --privileged
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Install dependencies
       run: |
         apk add --no-cache \
@@ -66,23 +59,23 @@ jobs:
           ttf-freefont \
           nodejs \
           yarn
-    
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '22'
         cache: 'npm'
-    
+
     - name: Install dependencies
       run: npm ci
-    
+
     - name: Build
       run: npm run build
-    
+
     - name: Get version
       id: get_version
       run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-    
+
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
