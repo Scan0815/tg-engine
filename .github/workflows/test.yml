@@ -21,18 +21,28 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Install Chrome dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgbm-dev libasound2-dev
+
     - name: Run tests
       env:
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
-        PUPPETEER_EXECUTABLE_PATH: /usr/bin/chromium-browser
+        PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
       run: npm test
 
   build-and-release:
     needs: test
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -44,11 +54,21 @@ jobs:
       run: npm ci
 
     - name: Build
-      run: npm run build
+      run: |
+        npm run build --prod
+        ls -la dist/
+        ls -la loader/
 
     - name: Get version
       id: get_version
       run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+    - name: Generate changelog
+      id: changelog
+      run: |
+        echo "changelog<<EOF" >> $GITHUB_OUTPUT
+        git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 2>/dev/null || echo "")..HEAD >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
 
     - name: Create Release
       id: create_release
@@ -57,10 +77,16 @@ jobs:
         tag_name: v${{ steps.get_version.outputs.version }}
         name: Release v${{ steps.get_version.outputs.version }}
         body: |
-          Changes in this release:
+          ## Changes in this release
+          ${{ steps.changelog.outputs.changelog }}
+          
+          ### Full commit message
           ${{ github.event.head_commit.message }}
         files: |
-          dist/
-          loader/
+          dist/**/*
+          loader/**/*
+        draft: false
+        prerelease: false
+        generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
