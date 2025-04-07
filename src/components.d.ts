@@ -38,6 +38,8 @@ export namespace Components {
     }
     interface ExampleGame {
     }
+    interface ExamplePage {
+    }
     interface ExampleSprite {
     }
     interface ExampleSpriteMap {
@@ -210,6 +212,12 @@ declare global {
         prototype: HTMLExampleGameElement;
         new (): HTMLExampleGameElement;
     };
+    interface HTMLExamplePageElement extends Components.ExamplePage, HTMLStencilElement {
+    }
+    var HTMLExamplePageElement: {
+        prototype: HTMLExamplePageElement;
+        new (): HTMLExamplePageElement;
+    };
     interface HTMLExampleSpriteElement extends Components.ExampleSprite, HTMLStencilElement {
     }
     var HTMLExampleSpriteElement: {
@@ -299,6 +307,7 @@ declare global {
         "example-entity-player": HTMLExampleEntityPlayerElement;
         "example-entity-wall": HTMLExampleEntityWallElement;
         "example-game": HTMLExampleGameElement;
+        "example-page": HTMLExamplePageElement;
         "example-sprite": HTMLExampleSpriteElement;
         "example-sprite-map": HTMLExampleSpriteMapElement;
         "tg-camera": HTMLTgCameraElement;
@@ -330,6 +339,8 @@ declare namespace LocalJSX {
         "vector"?: IVector2;
     }
     interface ExampleGame {
+    }
+    interface ExamplePage {
     }
     interface ExampleSprite {
     }
@@ -444,6 +455,7 @@ declare namespace LocalJSX {
         "example-entity-player": ExampleEntityPlayer;
         "example-entity-wall": ExampleEntityWall;
         "example-game": ExampleGame;
+        "example-page": ExamplePage;
         "example-sprite": ExampleSprite;
         "example-sprite-map": ExampleSpriteMap;
         "tg-camera": TgCamera;
@@ -465,6 +477,7 @@ declare module "@stencil/core" {
             "example-entity-player": LocalJSX.ExampleEntityPlayer & JSXBase.HTMLAttributes<HTMLExampleEntityPlayerElement>;
             "example-entity-wall": LocalJSX.ExampleEntityWall & JSXBase.HTMLAttributes<HTMLExampleEntityWallElement>;
             "example-game": LocalJSX.ExampleGame & JSXBase.HTMLAttributes<HTMLExampleGameElement>;
+            "example-page": LocalJSX.ExamplePage & JSXBase.HTMLAttributes<HTMLExamplePageElement>;
             "example-sprite": LocalJSX.ExampleSprite & JSXBase.HTMLAttributes<HTMLExampleSpriteElement>;
             "example-sprite-map": LocalJSX.ExampleSpriteMap & JSXBase.HTMLAttributes<HTMLExampleSpriteMapElement>;
             "tg-camera": LocalJSX.TgCamera & JSXBase.HTMLAttributes<HTMLTgCameraElement>;

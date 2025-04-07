@@ -3,12 +3,65 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
+    <title>TG Engine Examples</title>
 
     <script type="module" src="/build/tg-engine.esm.js"></script>
     <script nomodule src="/build/tg-engine.js"></script>
   </head>
   <body>
-  <example-game></example-game>
+    <div class="examples">
+      <h1>TG Engine Examples</h1>
+      <section id="components">
+        <h2>Component Examples</h2>
+        <p>Interactive examples of individual components.</p>
+        <example-page></example-page>
+      </section>
+    </div>
+
+    <style>
+      .examples {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .example-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .example-links a {
+        padding: 0.5rem 1rem;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.2s;
+      }
+
+      .example-links a:hover {
+        background: #0056b3;
+      }
+
+      section {
+        margin-bottom: 4rem;
+      }
+
+      h2 {
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #666;
+        margin-bottom: 2rem;
+      }
+    </style>
   </body>
 </html>

@@ -43,6 +43,7 @@ export class TgSpriteAnimator implements ComponentInterface {
   /** watch for changed state prop*/
   @Watch('state')
   watchStateHandler() {
+    console.log('state changed', this.state);
     this.updateAnimationClass(this.play);
   }
 
@@ -57,6 +58,12 @@ export class TgSpriteAnimator implements ComponentInterface {
 
   private animate(spriteElement: HTMLTgSpriteElement, animation: IAnimation) {
     const { frames, duration = 100, loop = true } = animation;
+
+
+    if (this.state === 'paused') {
+      cancelAnimationFrame(this.animationFrameId);
+      return;
+    }
     // Bestehende Animation abbrechen
     if (this.animationFrameId !== null) {
       cancelAnimationFrame(this.animationFrameId);
@@ -97,7 +104,7 @@ export class TgSpriteAnimator implements ComponentInterface {
       this.animationFrameId = requestAnimationFrame((timestamp) => step(timestamp));
     };
 
-    requestAnimationFrame((timestamp) => step(timestamp));
+    this.animationFrameId = requestAnimationFrame((timestamp) => step(timestamp));
   }
 
 

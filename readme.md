@@ -1,85 +1,227 @@
-# Sprite Game Package
+# TG Engine
 
-The Sprite Game Package is a collection of web components built with StencilJS, designed for easy and efficient integration of sprite-based graphics into web-based games and animations. This package includes components for displaying individual sprites, animating them, and managing sprite maps.
-
-ALPHA VERSION: This package is currently in alpha and may not be suitable for production use. Please report any issues or bugs you encounter.
-
-## Components
-
-### `tg-sprite`
-
-A component that displays a single sprite from a sprite sheet.
-
-#### Properties
-
-- **`src`**: String - URL of the sprite image.
-- **`width`**: Number - Width of a single sprite frame.
-- **`height`**: Number - Height of a single sprite frame.
-- **`scale`**: Number - Scale factor for the sprite image.
-- **`frame`**: Number - Initial frame to display.
-- **`hFrames`**: Number - Number of horizontal frames in the sprite sheet.
-- **`vFrames`**: Number - Number of vertical frames in the sprite sheet.
-- **`vFlip`**: Boolean - Whether to flip the sprite image vertically.
-- **`hFlip`**: Boolean - Whether to flip the sprite image horizontally.
-
-Here is a basic example of how to use the `tg-sprite` component in your application:
-
-```html
-<tg-sprite src="path/to/sprite.png" width="32" height="32" hFrames="10" vFrames="10"></tg-sprite>
-```
-
-
-### `tg-sprite-animator`
-
-A component to animate `tg-sprite` using predefined animations.
-
-#### Properties
-
-- **`animations`**: Object - A dictionary of animations.
-- **`play`**: String - The key of the animation to play.
-- **`state`**: Enum('running', 'paused') - Controls the playback state.
-- **`iterationCount`**: Enum('infinite', Number) - How many times to play the animation.
-
-#### Example Usage
-
-```html
-<tg-sprite-animator animations='{"walk": {"frames": [0,1,2,3,4], "duration": 100}}' play="walk" iterationCount="infinite">
-  <tg-sprite src="path/to/walking-sprite.png" width="32" height="32" hFrames="5" vFrames="1"></tg-sprite>
-</tg-sprite-animator>
-```
-
-### `tg-sprite-map`
-
-A component to manage and display a map of tiles, each potentially an animated sprite.
-
-#### Properties
-
-- **`src`**: String - URL of the sprite sheet used for tiles.
-- **`vFrames`**: Number - Number of vertical frames in the tile sheet.
-- **`hFrames`**: Number - Number of horizontal frames in the tile sheet.
-- **`width`**: Number - Width of each tile.
-- **`height`**: Number - Height of each tile.
-- **`scale`**: Number - Scale factor for the tile image.
-- **`tiles`**: Array of `ITile` - Array of tile objects to be rendered.
-
-#### Example Usage
-
-```html
-<tg-sprite-map src="path/to/tilemap.png" width="32" height="32" hFrames="10" vFrames="10" tiles='[{"x": 0, "y": 0, "frames": [0, 1, 2, 3], "duration": 300}]'>
-</tg-sprite-map>
-```
+TG Engine is a lightweight game engine built with StencilJS, designed for creating 2D sprite-based games and animations in the browser. It provides a set of web components that handle sprite rendering, animation, collision detection, camera control, and touch input.
 
 ## Installation
-
-To install the Sprite Game Package, add it to your project using npm:
 
 ```bash
 npm install tg-engine
 ```
 
-## Usage
+## Components
 
-Refer to the component examples above for how to integrate the sprite components into your application.
+### `tg-sprite`
+
+Displays a single sprite from a sprite sheet.
+
+#### Properties
+
+- **`src`**: String - URL or base64 string of the sprite image
+- **`width`**: Number - Width of a single sprite frame in pixels
+- **`height`**: Number - Height of a single sprite frame in pixels
+- **`scale`**: Number - Scale factor for the sprite (default: 1)
+- **`frame`**: Number - Initial frame to display (default: 0)
+- **`hFrames`**: Number - Number of horizontal frames in the sprite sheet
+- **`vFrames`**: Number - Number of vertical frames in the sprite sheet
+- **`vFlip`**: Boolean - Whether to flip the sprite vertically (default: false)
+- **`hFlip`**: Boolean - Whether to flip the sprite horizontally (default: false)
+
+#### Example
+
+```html
+<tg-sprite 
+  src="path/to/sprite.png"
+  width={16}
+  height={16}
+  hFrames={2}
+  vFrames={4}
+  scale={5}
+  frame={0}
+/>
+```
+
+### `tg-sprite-animator`
+
+Animates a `tg-sprite` component using predefined animations.
+
+#### Properties
+
+- **`animations`**: Object - Dictionary of animations
+  ```typescript
+  {
+    [animationName: string]: {
+      frames: number[],
+      duration: number
+    }
+  }
+  ```
+- **`play`**: String - Name of the animation to play
+- **`state`**: 'running' | 'paused' - Controls animation playback
+- **`iterationCount`**: 'infinite' | number - Number of times to play the animation
+
+#### Example
+
+```html
+<tg-sprite-animator
+  animations={{
+    'walk': { frames: [0, 1, 2, 3], duration: 100 },
+    'idle': { frames: [4, 5], duration: 400 }
+  }}
+  play="walk"
+  state="running"
+  iterationCount="infinite"
+>
+  <tg-sprite
+    src="path/to/sprite.png"
+    width={16}
+    height={16}
+    hFrames={2}
+    vFrames={4}
+    scale={5}
+  />
+</tg-sprite-animator>
+```
+
+### `tg-sprite-map`
+
+Renders a tile-based map using a sprite sheet.
+
+#### Properties
+
+- **`src`**: String - URL or base64 string of the tile sheet
+- **`width`**: Number - Width of the map in tiles
+- **`height`**: Number - Height of the map in tiles
+- **`tileWidth`**: Number - Width of each tile in pixels
+- **`tileHeight`**: Number - Height of each tile in pixels
+- **`hFrames`**: Number - Number of horizontal frames in the tile sheet
+- **`vFrames`**: Number - Number of vertical frames in the tile sheet
+- **`scale`**: Number - Scale factor for the tiles (default: 1)
+- **`tiles`**: Array<ITile> - Array of tile objects
+  ```typescript
+  interface ITile {
+    x: number;
+    y: number;
+    frames: number[];
+    duration?: number;
+  }
+  ```
+
+#### Example
+
+```html
+<tg-sprite-map
+  src="path/to/tiles.png"
+  width={8}
+  height={8}
+  tileWidth={16}
+  tileHeight={16}
+  hFrames={10}
+  vFrames={10}
+  scale={5}
+  tiles={[
+    { x: 0, y: 0, frames: [0] },
+    { x: 1, y: 0, frames: [1] },
+    { x: 0, y: 1, frames: [2] },
+    { x: 1, y: 1, frames: [3] }
+  ]}
+/>
+```
+
+### `tg-camera`
+
+Follows a target element with smooth interpolation.
+
+#### Properties
+
+- **`width`**: Number - Width of the camera viewport
+- **`height`**: Number - Height of the camera viewport
+- **`target`**: HTMLElement - Element to follow
+- **`smooth`**: Number - Smoothing factor for camera movement (default: 0.1)
+
+#### Example
+
+```html
+<tg-camera width={400} height={400} target={targetElement} smooth={0.1}>
+  <div class="game-world">
+    <!-- Your game content here -->
+  </div>
+</tg-camera>
+```
+
+### `tg-collider`
+
+Detects collisions between elements.
+
+#### Properties
+
+- **`name`**: String - Unique identifier for the collider
+- **`width`**: Number - Width of the collision box
+- **`height`**: Number - Height of the collision box
+- **`x`**: Number - X position offset (default: 0)
+- **`y`**: Number - Y position offset (default: 0)
+
+#### Example
+
+```html
+<div class="player">
+  <tg-collider name="player" width={32} height={32} />
+</div>
+```
+
+### `tg-touch-controller`
+
+Handles touch input with swipe detection.
+
+#### Events
+
+- **`onSwipeUp`**: Function - Called when swiping up
+- **`onSwipeDown`**: Function - Called when swiping down
+- **`onSwipeLeft`**: Function - Called when swiping left
+- **`onSwipeRight`**: Function - Called when swiping right
+
+#### Example
+
+```html
+<tg-touch-controller
+  onSwipeUp={() => handleSwipe('up')}
+  onSwipeDown={() => handleSwipe('down')}
+  onSwipeLeft={() => handleSwipe('left')}
+  onSwipeRight={() => handleSwipe('right')}
+>
+  <div class="touch-area">
+    <!-- Touch area content -->
+  </div>
+</tg-touch-controller>
+```
+
+## Usage in a Project
+
+1. Install the package:
+```bash
+npm install tg-engine
+```
+
+2. Import the components in your project:
+```typescript
+import { defineCustomElements } from 'tg-engine/loader';
+
+defineCustomElements();
+```
+
+3. Use the components in your HTML/JSX:
+```html
+<tg-sprite-map
+  src="path/to/tiles.png"
+  width={8}
+  height={8}
+  tileWidth={16}
+  tileHeight={16}
+  hFrames={10}
+  vFrames={10}
+  scale={5}
+  tiles={tiles}
+/>
+```
 
 ## Contributing
 
