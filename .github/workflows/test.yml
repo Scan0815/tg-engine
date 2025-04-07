@@ -59,6 +59,13 @@ jobs:
         ls -la dist/
         ls -la loader/
 
+    - name: Verify files
+      run: |
+        echo "Checking dist directory:"
+        find dist -type f -not -name "*.map"
+        echo "Checking loader directory:"
+        find loader -type f -not -name "*.map"
+
     - name: Get version
       id: get_version
       run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
@@ -83,8 +90,12 @@ jobs:
           ### Full commit message
           ${{ github.event.head_commit.message }}
         files: |
-          dist/**/*
-          loader/**/*
+          dist/**/*.js
+          dist/**/*.d.ts
+          dist/**/*.json
+          loader/**/*.js
+          loader/**/*.cjs
+          loader/**/*.d.ts
         draft: false
         prerelease: false
         generate_release_notes: true
