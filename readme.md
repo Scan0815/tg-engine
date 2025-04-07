@@ -1,5 +1,7 @@
 # TG Engine
 
+[![Tests](https://github.com/Scan0815/tg-engine/actions/workflows/test.yml/badge.svg)](https://github.com/Scan0815/tg-engine/actions/workflows/test.yml)
+
 TG Engine is a lightweight game engine built with StencilJS, designed for creating 2D sprite-based games and animations in the browser. It provides a set of web components that handle sprite rendering, animation, collision detection, camera control, and touch input.
 
 ## Installation
