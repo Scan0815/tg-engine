@@ -1,6 +1,6 @@
 {
   "name": "tg-engine",
-  "version": "0.1.1-ALPHA",
+  "version": "0.1.2-ALPHA",
   "description": "a small sprite game engine for typescript, build with stenciljs, ALPHA VERSION",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
