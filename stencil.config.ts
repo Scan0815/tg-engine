@@ -10,6 +10,18 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      copy: [
+        {
+          src: 'components/interfaces',
+          dest: 'components/interfaces',
+          warn: true
+        },
+        {
+          src: 'components/vector2',
+          dest: 'components/vector2',
+          warn: true
+        }
+      ]
     },
     {
       type: 'dist-custom-elements',
@@ -26,6 +38,6 @@ export const config: Config = {
     },
   ],
   testing: {
-    browserHeadless: "new",
+    browserHeadless: true,
   },
 };

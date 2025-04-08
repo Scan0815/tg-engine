@@ -10,10 +10,7 @@
 
 export { ColliderManager } from './components/manager/collider.manager';
 export { Vector2 } from './components/vector2/vector2';
-export { IVector2 } from './components/interfaces/IVector2';
-export { IAnimation } from './components/interfaces/IAnimation';
-export { ITile } from './components/interfaces/ITile';
-export { ICollider } from './components/interfaces/ICollider';
-export { ISize } from './components/interfaces/ISize';
+export * from './components/interfaces';
 
+// Export types
 export type * from './components.d.ts';

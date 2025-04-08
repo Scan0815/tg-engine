@@ -11,7 +11,8 @@
   "exports": {
     ".": {
       "import": "./dist/tg-engine/tg-engine.esm.js",
-      "require": "./dist/tg-engine/tg-engine.cjs.js"
+      "require": "./dist/tg-engine/tg-engine.cjs.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./engine/tg-collider": {
       "import": "./dist/components/tg-collider.js",
