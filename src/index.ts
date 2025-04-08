@@ -9,7 +9,7 @@
  */
 
 export { ColliderManager } from './components/manager/collider.manager';
-export { Vector2 } from './components/vector2';
+export { Vector2 } from './components/vector2/vector2';
 export * from './components/interfaces';
 
 // Export types

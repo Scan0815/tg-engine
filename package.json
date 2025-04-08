@@ -54,7 +54,8 @@
   },
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "src/"
   ],
   "scripts": {
     "prepare": "npm run build --prod",

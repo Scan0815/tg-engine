@@ -10,6 +10,13 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      copy: [
+        {
+          src: 'components/vector2',
+          dest: 'components/vector2',
+          warn: true
+        }
+      ]
     },
     {
       type: 'dist-custom-elements',
