@@ -8,17 +8,6 @@ export const config: Config = {
   ],
   outputTargets: [
     {
-      type: 'dist',
-      esmLoaderPath: '../loader',
-      copy: [
-        {
-          src: 'components/vector2',
-          dest: 'components/vector2',
-          warn: true
-        }
-      ]
-    },
-    {
       type: 'dist-custom-elements',
       customElementsExportBehavior: 'auto-define-custom-elements',
       externalRuntime: false,
