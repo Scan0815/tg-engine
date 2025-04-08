@@ -8,12 +8,12 @@
  * to consume components of this package as outlined in the `README.md`.
  */
 
-
-export {ColliderManager} from './components/manager/collider.manager';
-export {Vector2,IVector2} from './components/interfaces/IVector2';
-export {IAnimation} from './components/interfaces/IAnimation';
-export {ITile} from './components/interfaces/ITile';
-export {ICollider} from './components/interfaces/ICollider';
-export {ISize} from './components/interfaces/ISize';
+export { ColliderManager } from './components/manager/collider.manager';
+export { Vector2 } from './components/vector2/vector2';
+export { IVector2 } from './components/interfaces/IVector2';
+export { IAnimation } from './components/interfaces/IAnimation';
+export { ITile } from './components/interfaces/ITile';
+export { ICollider } from './components/interfaces/ICollider';
+export { ISize } from './components/interfaces/ISize';
 
 export type * from './components.d.ts';

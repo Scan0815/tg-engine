@@ -1,5 +1,5 @@
 import { ComponentInterface, Component, Element, h, Host, Listen } from '@stencil/core';
-import { Vector2 } from '../../interfaces/IVector2';
+import { Vector2 } from '../../vector2/vector2';
 import { MoveToDirection, TilePos } from './helper';
 import { ColliderManager } from '../../manager/collider.manager';
 
