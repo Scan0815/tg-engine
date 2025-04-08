@@ -1,16 +1,13 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
 export const config: Config = {
   namespace: 'tg-engine',
+  extras:{
+    enableImportInjection:true
+  },
   plugins: [
     sass(),
   ],
-  rollupPlugins: {
-    after: [
-      nodePolyfills(),
-    ]
-  },
   outputTargets: [
     {
       type: 'dist',
