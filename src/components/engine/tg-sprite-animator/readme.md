@@ -14,7 +14,7 @@ It takes in the following properties:
 
 | Property         | Attribute         | Description                                        | Type                             | Default      |
 | ---------------- | ----------------- | -------------------------------------------------- | -------------------------------- | ------------ |
-| `animations`     | `animations`      | the animations to be played                        | `{ [key: string]: IAnimation; }` | `null`       |
+| `animations`     | --                | the animations to be played                        | `{ [key: string]: IAnimation; }` | `null`       |
 | `iterationCount` | `iteration-count` | the number of times the animation should be played | `"infinite" \| number`           | `'infinite'` |
 | `play`           | `play`            | the animation to play                              | `string`                         | `null`       |
 | `state`          | `state`           | the state of the animation                         | `"paused" \| "running"`          | `'running'`  |

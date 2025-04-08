@@ -9,6 +9,7 @@
  */
 
 export { ColliderManager } from './components/manager/collider.manager';
+export { AudioManager } from './components/manager/audio.manager';
 export * from './components/interfaces';
 export { Vector2 } from './components/vector2/vector2';
 
