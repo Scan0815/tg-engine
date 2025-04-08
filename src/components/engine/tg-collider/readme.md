@@ -59,6 +59,7 @@ Type: `Promise<TgCollider>`
  - [example-entity-goal](../../example/example-game/entities/entity-goal)
  - [example-entity-player](../../example/example-game/entities/entity-player)
  - [example-entity-wall](../../example/example-game/entities/entity-wall)
+ - [example-page](../../example/example-page)
 
 ### Graph
 ```mermaid
@@ -67,6 +68,7 @@ graph TD;
   example-entity-goal --> tg-collider
   example-entity-player --> tg-collider
   example-entity-wall --> tg-collider
+  example-page --> tg-collider
   style tg-collider fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

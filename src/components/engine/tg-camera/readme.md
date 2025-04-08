@@ -20,11 +20,13 @@
 ### Used by
 
  - [example-game](../../example/example-game)
+ - [example-page](../../example/example-page)
 
 ### Graph
 ```mermaid
 graph TD;
   example-game --> tg-camera
+  example-page --> tg-camera
   style tg-camera fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
