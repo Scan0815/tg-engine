@@ -40,7 +40,6 @@ Type: `Promise<string>`
 
  - [example-animator](../../example/example-animator)
  - [example-entity-player](../../example/example-game/entities/entity-player)
- - [example-page](../../example/example-page)
  - [tg-sprite-map](../tg-sprite-map)
 
 ### Graph
@@ -48,7 +47,6 @@ Type: `Promise<string>`
 graph TD;
   example-animator --> tg-sprite-animator
   example-entity-player --> tg-sprite-animator
-  example-page --> tg-sprite-animator
   tg-sprite-map --> tg-sprite-animator
   style tg-sprite-animator fill:#f9f,stroke:#333,stroke-width:4px
 ```

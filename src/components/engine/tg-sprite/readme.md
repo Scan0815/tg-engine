@@ -31,7 +31,6 @@ It takes in the following properties:
 
  - [example-animator](../../example/example-animator)
  - [example-entity-player](../../example/example-game/entities/entity-player)
- - [example-page](../../example/example-page)
  - [example-sprite](../../example/example-sprite)
  - [tg-sprite-map](../tg-sprite-map)
 
@@ -40,7 +39,6 @@ It takes in the following properties:
 graph TD;
   example-animator --> tg-sprite
   example-entity-player --> tg-sprite
-  example-page --> tg-sprite
   example-sprite --> tg-sprite
   tg-sprite-map --> tg-sprite
   style tg-sprite fill:#f9f,stroke:#333,stroke-width:4px
