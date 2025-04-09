@@ -1,6 +1,6 @@
 import { Component, ComponentInterface, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { CalculateOffset } from '../../../utils/utils';
-import { IAnimation } from '../../interfaces/IAnimation';
+import { IAnimation } from '../../../interfaces/IAnimation';
 
 /**
  * Component to animate a tg-sprite component using a animation object

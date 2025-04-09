@@ -15,7 +15,7 @@
 | `src`        | `src`         |             | `string`  | `''`    |
 | `tileHeight` | `tile-height` |             | `number`  | `16`    |
 | `tileWidth`  | `tile-width`  |             | `number`  | `16`    |
-| `tiles`      | --            |             | `ITile[]` | `[]`    |
+| `tiles`      | `tiles`       |             | `ITile[]` | `[]`    |
 | `vFrames`    | `v-frames`    |             | `number`  | `1`     |
 | `width`      | `width`       |             | `number`  | `5`     |
 

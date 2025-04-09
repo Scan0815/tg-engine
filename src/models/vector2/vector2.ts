@@ -1,4 +1,4 @@
-import { IVector2 } from '../interfaces';
+import { IVector2 } from '../../interfaces';
 
 export class Vector2 implements IVector2 {
   x: number;

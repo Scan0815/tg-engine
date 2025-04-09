@@ -1,4 +1,4 @@
-import { TgCollider } from '../engine/tg-collider/tg-collider';
+import { TgCollider } from '../components/engine/tg-collider/tg-collider';
 
 export class ColliderManager {
   private static instance: ColliderManager;

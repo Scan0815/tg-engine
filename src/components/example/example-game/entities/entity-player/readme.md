@@ -11,7 +11,7 @@
 | ----------- | ----------- | ----------- | ------------------------------------- | ------------------- |
 | `direction` | `direction` |             | `"down" \| "left" \| "right" \| "up"` | `'down'`            |
 | `type`      | `type`      |             | `"idle" \| "walk"`                    | `'walk'`            |
-| `vector`    | --          |             | `IVector2`                            | `new Vector2(0, 0)` |
+| `vector`    | `vector`    |             | `IVector2`                            | `new Vector2(0, 0)` |
 
 
 ## Events

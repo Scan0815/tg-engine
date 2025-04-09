@@ -5,14 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { IVector2 } from "./components/interfaces/IVector2";
-import { ICollider } from "./components/interfaces/ICollider";
-import { IAnimation } from "./components/interfaces/IAnimation";
-import { ITile } from "./components/interfaces/ITile";
-export { IVector2 } from "./components/interfaces/IVector2";
-export { ICollider } from "./components/interfaces/ICollider";
-export { IAnimation } from "./components/interfaces/IAnimation";
-export { ITile } from "./components/interfaces/ITile";
+import { IVector2 } from "./interfaces/IVector2";
+import { ICollider } from "./interfaces/ICollider";
+import { IAnimation } from "./interfaces/IAnimation";
+import { ITile } from "./interfaces/ITile";
+export { IVector2 } from "./interfaces/IVector2";
+export { ICollider } from "./interfaces/ICollider";
+export { IAnimation } from "./interfaces/IAnimation";
+export { ITile } from "./interfaces/ITile";
 export namespace Components {
     interface ExampleAnimator {
     }

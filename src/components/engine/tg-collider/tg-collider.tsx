@@ -1,6 +1,6 @@
 import { Component, Element, h, Method,Event,  EventEmitter, Host, Prop, ComponentInterface} from '@stencil/core';
-import { ColliderManager } from '../../manager/collider.manager';
-import { ICollider } from '../../interfaces/ICollider';
+import { ColliderManager } from '../../../manager/collider.manager';
+import { ICollider } from '../../../interfaces/ICollider';
 
 @Component({
   tag: 'tg-collider',

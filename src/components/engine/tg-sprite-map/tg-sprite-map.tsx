@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop } from '@stencil/core';
-import { ITile } from '../../interfaces/ITile';
+import { ITile } from '../../../interfaces/ITile';
 
 @Component({
   tag: 'tg-sprite-map',

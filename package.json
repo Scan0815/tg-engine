@@ -33,19 +33,6 @@
     "./engine/tg-sprite-map": {
       "import": "./dist/components/tg-sprite-map.js",
       "types": "./dist/components/tg-sprite-map.d.ts"
-    },
-    "./engine/vector2": {
-      "import": "./dist/components/vector2/vector2.js",
-      "types": "./dist/components/vector2/vector2.d.ts"
-    },
-    "./engine/interfaces": {
-      "import": "./dist/components/interfaces/index.js",
-      "types": "./dist/components/interfaces/index.d.ts"
-    },
-    "./loader": {
-      "import": "./loader/index.js",
-      "require": "./loader/index.cjs",
-      "types": "./loader/index.d.ts"
     }
   },
   "repository": {

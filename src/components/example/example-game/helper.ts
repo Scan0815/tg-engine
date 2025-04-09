@@ -1,5 +1,5 @@
-import { IVector2 } from '../../interfaces/IVector2';
-import { Vector2 } from '../../vector2/vector2';
+import { IVector2 } from '../../../interfaces/IVector2';
+import { Vector2 } from '../../../models/vector2/vector2';
 
 export const TilePos = (tile:number) => {
   return tile * 80

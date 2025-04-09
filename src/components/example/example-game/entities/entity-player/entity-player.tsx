@@ -1,6 +1,6 @@
 import { Event, Component, ComponentInterface, h, Host, Method, Prop, Element, EventEmitter } from '@stencil/core';
-import { IVector2 } from '../../../../interfaces/IVector2';
-import { Vector2 } from '../../../../vector2/vector2';
+import { IVector2 } from '../../../../../interfaces/IVector2';
+import { Vector2 } from '../../../../../models/vector2/vector2';
 
 @Component({
   tag: 'example-entity-player',
