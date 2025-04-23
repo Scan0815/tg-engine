@@ -38,6 +38,10 @@ export namespace Components {
     }
     interface ExampleGame {
     }
+    interface ExampleKeyController {
+    }
+    interface ExampleMouseController {
+    }
     interface ExamplePage {
     }
     interface ExampleSprite {
@@ -63,6 +67,14 @@ export namespace Components {
         "width": number;
         "x": number;
         "y": number;
+    }
+    interface TgKeyController {
+        /**
+          * Array of keys to be monitored. e.g. ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space']
+         */
+        "keys": string[];
+    }
+    interface TgMouseController {
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -154,6 +166,14 @@ export interface TgColliderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLTgColliderElement;
 }
+export interface TgKeyControllerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLTgKeyControllerElement;
+}
+export interface TgMouseControllerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLTgMouseControllerElement;
+}
 export interface TgTouchControllerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLTgTouchControllerElement;
@@ -212,6 +232,18 @@ declare global {
         prototype: HTMLExampleGameElement;
         new (): HTMLExampleGameElement;
     };
+    interface HTMLExampleKeyControllerElement extends Components.ExampleKeyController, HTMLStencilElement {
+    }
+    var HTMLExampleKeyControllerElement: {
+        prototype: HTMLExampleKeyControllerElement;
+        new (): HTMLExampleKeyControllerElement;
+    };
+    interface HTMLExampleMouseControllerElement extends Components.ExampleMouseController, HTMLStencilElement {
+    }
+    var HTMLExampleMouseControllerElement: {
+        prototype: HTMLExampleMouseControllerElement;
+        new (): HTMLExampleMouseControllerElement;
+    };
     interface HTMLExamplePageElement extends Components.ExamplePage, HTMLStencilElement {
     }
     var HTMLExamplePageElement: {
@@ -252,6 +284,45 @@ declare global {
     var HTMLTgColliderElement: {
         prototype: HTMLTgColliderElement;
         new (): HTMLTgColliderElement;
+    };
+    interface HTMLTgKeyControllerElementEventMap {
+        "pressKeyDown": string;
+        "pressKeyUp": string;
+    }
+    interface HTMLTgKeyControllerElement extends Components.TgKeyController, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLTgKeyControllerElementEventMap>(type: K, listener: (this: HTMLTgKeyControllerElement, ev: TgKeyControllerCustomEvent<HTMLTgKeyControllerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLTgKeyControllerElementEventMap>(type: K, listener: (this: HTMLTgKeyControllerElement, ev: TgKeyControllerCustomEvent<HTMLTgKeyControllerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLTgKeyControllerElement: {
+        prototype: HTMLTgKeyControllerElement;
+        new (): HTMLTgKeyControllerElement;
+    };
+    interface HTMLTgMouseControllerElementEventMap {
+        "mouseRotation": { deltaX: number; deltaY: number };
+        "mouseButton1Down": void;
+        "mouseButton1Up": void;
+        "mouseButton2Down": void;
+        "mouseButton2Up": void;
+    }
+    interface HTMLTgMouseControllerElement extends Components.TgMouseController, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLTgMouseControllerElementEventMap>(type: K, listener: (this: HTMLTgMouseControllerElement, ev: TgMouseControllerCustomEvent<HTMLTgMouseControllerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLTgMouseControllerElementEventMap>(type: K, listener: (this: HTMLTgMouseControllerElement, ev: TgMouseControllerCustomEvent<HTMLTgMouseControllerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLTgMouseControllerElement: {
+        prototype: HTMLTgMouseControllerElement;
+        new (): HTMLTgMouseControllerElement;
     };
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -307,11 +378,15 @@ declare global {
         "example-entity-player": HTMLExampleEntityPlayerElement;
         "example-entity-wall": HTMLExampleEntityWallElement;
         "example-game": HTMLExampleGameElement;
+        "example-key-controller": HTMLExampleKeyControllerElement;
+        "example-mouse-controller": HTMLExampleMouseControllerElement;
         "example-page": HTMLExamplePageElement;
         "example-sprite": HTMLExampleSpriteElement;
         "example-sprite-map": HTMLExampleSpriteMapElement;
         "tg-camera": HTMLTgCameraElement;
         "tg-collider": HTMLTgColliderElement;
+        "tg-key-controller": HTMLTgKeyControllerElement;
+        "tg-mouse-controller": HTMLTgMouseControllerElement;
         "tg-sprite": HTMLTgSpriteElement;
         "tg-sprite-animator": HTMLTgSpriteAnimatorElement;
         "tg-sprite-map": HTMLTgSpriteMapElement;
@@ -340,6 +415,10 @@ declare namespace LocalJSX {
     }
     interface ExampleGame {
     }
+    interface ExampleKeyController {
+    }
+    interface ExampleMouseController {
+    }
     interface ExamplePage {
     }
     interface ExampleSprite {
@@ -365,6 +444,27 @@ declare namespace LocalJSX {
         "width"?: number;
         "x"?: number;
         "y"?: number;
+    }
+    interface TgKeyController {
+        /**
+          * Array of keys to be monitored. e.g. ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space']
+         */
+        "keys"?: string[];
+        /**
+          * Event emitted when a monitored key is pressed
+         */
+        "onPressKeyDown"?: (event: TgKeyControllerCustomEvent<string>) => void;
+        /**
+          * Event emitted when a monitored key is released
+         */
+        "onPressKeyUp"?: (event: TgKeyControllerCustomEvent<string>) => void;
+    }
+    interface TgMouseController {
+        "onMouseButton1Down"?: (event: TgMouseControllerCustomEvent<void>) => void;
+        "onMouseButton1Up"?: (event: TgMouseControllerCustomEvent<void>) => void;
+        "onMouseButton2Down"?: (event: TgMouseControllerCustomEvent<void>) => void;
+        "onMouseButton2Up"?: (event: TgMouseControllerCustomEvent<void>) => void;
+        "onMouseRotation"?: (event: TgMouseControllerCustomEvent<{ deltaX: number; deltaY: number }>) => void;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -455,11 +555,15 @@ declare namespace LocalJSX {
         "example-entity-player": ExampleEntityPlayer;
         "example-entity-wall": ExampleEntityWall;
         "example-game": ExampleGame;
+        "example-key-controller": ExampleKeyController;
+        "example-mouse-controller": ExampleMouseController;
         "example-page": ExamplePage;
         "example-sprite": ExampleSprite;
         "example-sprite-map": ExampleSpriteMap;
         "tg-camera": TgCamera;
         "tg-collider": TgCollider;
+        "tg-key-controller": TgKeyController;
+        "tg-mouse-controller": TgMouseController;
         "tg-sprite": TgSprite;
         "tg-sprite-animator": TgSpriteAnimator;
         "tg-sprite-map": TgSpriteMap;
@@ -477,11 +581,15 @@ declare module "@stencil/core" {
             "example-entity-player": LocalJSX.ExampleEntityPlayer & JSXBase.HTMLAttributes<HTMLExampleEntityPlayerElement>;
             "example-entity-wall": LocalJSX.ExampleEntityWall & JSXBase.HTMLAttributes<HTMLExampleEntityWallElement>;
             "example-game": LocalJSX.ExampleGame & JSXBase.HTMLAttributes<HTMLExampleGameElement>;
+            "example-key-controller": LocalJSX.ExampleKeyController & JSXBase.HTMLAttributes<HTMLExampleKeyControllerElement>;
+            "example-mouse-controller": LocalJSX.ExampleMouseController & JSXBase.HTMLAttributes<HTMLExampleMouseControllerElement>;
             "example-page": LocalJSX.ExamplePage & JSXBase.HTMLAttributes<HTMLExamplePageElement>;
             "example-sprite": LocalJSX.ExampleSprite & JSXBase.HTMLAttributes<HTMLExampleSpriteElement>;
             "example-sprite-map": LocalJSX.ExampleSpriteMap & JSXBase.HTMLAttributes<HTMLExampleSpriteMapElement>;
             "tg-camera": LocalJSX.TgCamera & JSXBase.HTMLAttributes<HTMLTgCameraElement>;
             "tg-collider": LocalJSX.TgCollider & JSXBase.HTMLAttributes<HTMLTgColliderElement>;
+            "tg-key-controller": LocalJSX.TgKeyController & JSXBase.HTMLAttributes<HTMLTgKeyControllerElement>;
+            "tg-mouse-controller": LocalJSX.TgMouseController & JSXBase.HTMLAttributes<HTMLTgMouseControllerElement>;
             /**
              * a component that can be used to display a sprite sheet image in a game or animation scene
              * It takes in the following properties:

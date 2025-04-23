@@ -110,6 +110,12 @@ export class ExamplePage {
               <li class={this.selectedComponent === 'touch-controller' ? 'active' : ''}>
                 <a href="#" onClick={(e) => { e.preventDefault(); this.selectedComponent = 'touch-controller'; }}>Touch Controller</a>
               </li>
+              <li class={this.selectedComponent === 'mouse-controller' ? 'active' : ''}>
+                <a href="#" onClick={(e) => { e.preventDefault(); this.selectedComponent = 'mouse-controller'; }}>Mouse Controller</a>
+              </li>
+              <li class={this.selectedComponent === 'key-controller' ? 'active' : ''}>
+                <a href="#" onClick={(e) => { e.preventDefault(); this.selectedComponent = 'key-controller'; }}>Key Controller</a>
+              </li>
               <li class={this.selectedComponent === 'game' ? 'active' : ''}>
                 <a href="#" onClick={(e) => { e.preventDefault(); this.selectedComponent = 'game'; }}>Game</a>
               </li>
@@ -340,6 +346,30 @@ export class ExamplePage {
                         Swipe here
                       </div>
                     </tg-touch-controller>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {this.selectedComponent === 'mouse-controller' && (
+              <div class="component-demo">
+                <h2>Mouse Controller Component</h2>
+                <p>Steuern Sie 3D-Objekte mit der Maus durch Rotation und Mausklicks.</p>
+                <div class="demo-container">
+                  <div class="demo-box">
+                    <example-mouse-controller />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {this.selectedComponent === 'key-controller' && (
+              <div class="component-demo">
+                <h2>Key Controller Component</h2>
+                <p>Überwachen Sie Tastatureingaben und reagieren Sie auf Tastendrücke.</p>
+                <div class="demo-container">
+                  <div class="demo-box">
+                    <example-key-controller />
                   </div>
                 </div>
               </div>
