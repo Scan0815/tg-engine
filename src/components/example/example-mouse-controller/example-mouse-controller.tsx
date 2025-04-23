@@ -41,15 +41,15 @@ export class ExampleMouseController {
   render() {
     return (
       <div class="example-container">
-        <h2>Mouse Controller Beispiel</h2>
-        <p>Klicken und ziehen Sie mit der linken oder rechten Maustaste, um den Würfel zu drehen.</p>
+        <h2>Mouse Controller Example</h2>
+        <p>Click and drag with left or right mouse button to rotate the cube.</p>
         
         <div class="mouse-indicators">
           <div class={`mouse-button ${this.button1Pressed ? 'pressed' : ''}`}>
-            Linke Maustaste
+            Left Mouse Button
           </div>
           <div class={`mouse-button ${this.button2Pressed ? 'pressed' : ''}`}>
-            Rechte Maustaste
+            Right Mouse Button
           </div>
         </div>
 
@@ -61,12 +61,12 @@ export class ExampleMouseController {
           onMouseButton2Up={this.handleMouseButton2Up}
         >
           <div class="rotating-box">
-            <div class="face front">Vorne</div>
-            <div class="face back">Hinten</div>
-            <div class="face right">Rechts</div>
-            <div class="face left">Links</div>
-            <div class="face top">Oben</div>
-            <div class="face bottom">Unten</div>
+            <div class="face front">Front</div>
+            <div class="face back">Back</div>
+            <div class="face right">Right</div>
+            <div class="face left">Left</div>
+            <div class="face top">Top</div>
+            <div class="face bottom">Bottom</div>
           </div>
         </tg-mouse-controller>
       </div>
