@@ -34,8 +34,8 @@ export class ExampleKeyController {
   render() {
     return (
       <div class="example-container">
-        <h2>Key Controller Beispiel</h2>
-        <p>Drücken Sie eine der folgenden Tasten:</p>
+        <h2>Key Controller Example</h2>
+        <p>Press any of the following keys:</p>
         <ul class="key-list">
           {this.watchedKeys.map(key => (
             <li class={this.pressedKeys.has(key) ? 'pressed' : ''}>
@@ -45,9 +45,9 @@ export class ExampleKeyController {
         </ul>
 
         <div class="key-display">
-          <p>Aktuell gedrückte Tasten:</p>
+          <p>Currently pressed keys:</p>
           <div class="pressed-keys">
-            {Array.from(this.pressedKeys).join(', ') || 'Keine'}
+            {Array.from(this.pressedKeys).join(', ') || 'None'}
           </div>
         </div>
 
