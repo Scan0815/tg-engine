@@ -17,23 +17,41 @@ export namespace Components {
     interface ExampleAnimator {
     }
     interface ExampleEntityBox {
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector": IVector2;
     }
     interface ExampleEntityGoal {
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector": IVector2;
     }
     interface ExampleEntityLevel {
     }
     interface ExampleEntityPlayer {
+        /**
+          * @default 'down'
+         */
         "direction": 'down' | 'right' | 'up' | 'left';
         "flipH": () => Promise<void>;
         "flipV": () => Promise<void>;
         "getCollider": () => Promise<HTMLTgColliderElement>;
         "playAnimation": (type: "idle" | "walk") => Promise<void>;
+        /**
+          * @default 'walk'
+         */
         "type": 'idle' | 'walk';
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector": IVector2;
     }
     interface ExampleEntityWall {
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector": IVector2;
     }
     interface ExampleGame {
@@ -49,28 +67,68 @@ export namespace Components {
     interface ExampleSpriteMap {
     }
     interface TgCamera {
+        /**
+          * @default 0.1
+         */
         "followSpeed": number;
         "height": number;
+        /**
+          * @default null
+         */
         "target": HTMLElement | null;
         "width": number;
     }
     interface TgCollider {
         "checkCollisionOnPosition": (x: number, y: number, width: number, height: number) => Promise<TgCollider>;
+        /**
+          * @default false
+         */
         "debug": boolean;
+        /**
+          * @default 'rgba(255,0,0,0.5)'
+         */
         "debugColor": string;
+        /**
+          * @default 0
+         */
         "height": number;
+        /**
+          * @default "default"
+         */
         "name": string;
+        /**
+          * @default 0
+         */
         "offsetX": number;
+        /**
+          * @default 0
+         */
         "offsetY": number;
+        /**
+          * @default 1
+         */
         "scale": number;
+        /**
+          * @default "default"
+         */
         "type": string;
+        /**
+          * @default 0
+         */
         "width": number;
+        /**
+          * @default 0
+         */
         "x": number;
+        /**
+          * @default 0
+         */
         "y": number;
     }
     interface TgKeyController {
         /**
           * Array of keys to be monitored. e.g. ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space']
+          * @default []
          */
         "keys": string[];
     }
@@ -83,38 +141,47 @@ export namespace Components {
     interface TgSprite {
         /**
           * the frame of the sprite image
+          * @default 0
          */
         "frame": number;
         /**
           * whether to flip the sprite image horizontally
+          * @default false
          */
         "hFlip": boolean;
         /**
           * the number of horizontal frames
+          * @default 1
          */
         "hFrames": number;
         /**
           * the height of the sprite image
+          * @default 16
          */
         "height": number;
         /**
           * the scale of the sprite image
+          * @default 1
          */
         "scale": number;
         /**
           * the source of the sprite image
+          * @default ''
          */
         "src": string;
         /**
           * whether to flip the sprite image vertically
+          * @default false
          */
         "vFlip": boolean;
         /**
           * the number of vertical frames
+          * @default 1
          */
         "vFrames": number;
         /**
           * the width of the sprite image
+          * @default 16
          */
         "width": number;
     }
@@ -125,14 +192,17 @@ export namespace Components {
     interface TgSpriteAnimator {
         /**
           * the animations to be played
+          * @default null
          */
         "animations": { [key: string]: IAnimation };
         /**
           * the number of times the animation should be played
+          * @default 'infinite'
          */
         "iterationCount": 'infinite' | number;
         /**
           * the animation to play
+          * @default null
          */
         "play": string;
         /**
@@ -141,18 +211,46 @@ export namespace Components {
         "refresh": () => Promise<string>;
         /**
           * the state of the animation
+          * @default 'running'
          */
         "state": 'running' | 'paused';
     }
     interface TgSpriteMap {
+        /**
+          * @default 1
+         */
         "hFrames": number;
+        /**
+          * @default 5
+         */
         "height": number;
+        /**
+          * @default 1
+         */
         "scale": number;
+        /**
+          * @default ''
+         */
         "src": string;
+        /**
+          * @default 16
+         */
         "tileHeight": number;
+        /**
+          * @default 16
+         */
         "tileWidth": number;
+        /**
+          * @default []
+         */
         "tiles": ITile[];
+        /**
+          * @default 1
+         */
         "vFrames": number;
+        /**
+          * @default 5
+         */
         "width": number;
     }
     interface TgTouchController {
@@ -397,20 +495,38 @@ declare namespace LocalJSX {
     interface ExampleAnimator {
     }
     interface ExampleEntityBox {
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector"?: IVector2;
     }
     interface ExampleEntityGoal {
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector"?: IVector2;
     }
     interface ExampleEntityLevel {
     }
     interface ExampleEntityPlayer {
+        /**
+          * @default 'down'
+         */
         "direction"?: 'down' | 'right' | 'up' | 'left';
         "onTransition"?: (event: ExampleEntityPlayerCustomEvent<boolean>) => void;
+        /**
+          * @default 'walk'
+         */
         "type"?: 'idle' | 'walk';
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector"?: IVector2;
     }
     interface ExampleEntityWall {
+        /**
+          * @default new Vector2(0, 0)
+         */
         "vector"?: IVector2;
     }
     interface ExampleGame {
@@ -426,28 +542,68 @@ declare namespace LocalJSX {
     interface ExampleSpriteMap {
     }
     interface TgCamera {
+        /**
+          * @default 0.1
+         */
         "followSpeed"?: number;
         "height"?: number;
+        /**
+          * @default null
+         */
         "target"?: HTMLElement | null;
         "width"?: number;
     }
     interface TgCollider {
+        /**
+          * @default false
+         */
         "debug"?: boolean;
+        /**
+          * @default 'rgba(255,0,0,0.5)'
+         */
         "debugColor"?: string;
+        /**
+          * @default 0
+         */
         "height"?: number;
+        /**
+          * @default "default"
+         */
         "name"?: string;
+        /**
+          * @default 0
+         */
         "offsetX"?: number;
+        /**
+          * @default 0
+         */
         "offsetY"?: number;
         "onCollision"?: (event: TgColliderCustomEvent<ICollider>) => void;
+        /**
+          * @default 1
+         */
         "scale"?: number;
+        /**
+          * @default "default"
+         */
         "type"?: string;
+        /**
+          * @default 0
+         */
         "width"?: number;
+        /**
+          * @default 0
+         */
         "x"?: number;
+        /**
+          * @default 0
+         */
         "y"?: number;
     }
     interface TgKeyController {
         /**
           * Array of keys to be monitored. e.g. ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space']
+          * @default []
          */
         "keys"?: string[];
         /**
@@ -473,38 +629,47 @@ declare namespace LocalJSX {
     interface TgSprite {
         /**
           * the frame of the sprite image
+          * @default 0
          */
         "frame"?: number;
         /**
           * whether to flip the sprite image horizontally
+          * @default false
          */
         "hFlip"?: boolean;
         /**
           * the number of horizontal frames
+          * @default 1
          */
         "hFrames"?: number;
         /**
           * the height of the sprite image
+          * @default 16
          */
         "height"?: number;
         /**
           * the scale of the sprite image
+          * @default 1
          */
         "scale"?: number;
         /**
           * the source of the sprite image
+          * @default ''
          */
         "src"?: string;
         /**
           * whether to flip the sprite image vertically
+          * @default false
          */
         "vFlip"?: boolean;
         /**
           * the number of vertical frames
+          * @default 1
          */
         "vFrames"?: number;
         /**
           * the width of the sprite image
+          * @default 16
          */
         "width"?: number;
     }
@@ -515,30 +680,61 @@ declare namespace LocalJSX {
     interface TgSpriteAnimator {
         /**
           * the animations to be played
+          * @default null
          */
         "animations"?: { [key: string]: IAnimation };
         /**
           * the number of times the animation should be played
+          * @default 'infinite'
          */
         "iterationCount"?: 'infinite' | number;
         /**
           * the animation to play
+          * @default null
          */
         "play"?: string;
         /**
           * the state of the animation
+          * @default 'running'
          */
         "state"?: 'running' | 'paused';
     }
     interface TgSpriteMap {
+        /**
+          * @default 1
+         */
         "hFrames"?: number;
+        /**
+          * @default 5
+         */
         "height"?: number;
+        /**
+          * @default 1
+         */
         "scale"?: number;
+        /**
+          * @default ''
+         */
         "src"?: string;
+        /**
+          * @default 16
+         */
         "tileHeight"?: number;
+        /**
+          * @default 16
+         */
         "tileWidth"?: number;
+        /**
+          * @default []
+         */
         "tiles"?: ITile[];
+        /**
+          * @default 1
+         */
         "vFrames"?: number;
+        /**
+          * @default 5
+         */
         "width"?: number;
     }
     interface TgTouchController {

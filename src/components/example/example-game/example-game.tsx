@@ -74,9 +74,6 @@ export class ExampleGame implements ComponentInterface {
           return box.vector.x === goal.vector.x && box.vector.y === goal.vector.y;
         });
       });
-      if (this.boxesInGoal.length === goals.length) {
-        console.log('You win!');
-      }
     }
   }
 
@@ -107,6 +104,17 @@ export class ExampleGame implements ComponentInterface {
     }
   }
 
+  doPlayerTransition(detail:boolean) {
+    this.playerTransition =  detail;
+    if(!detail) {
+      // Player finished transition, check if we can move
+      const goals = this.el.shadowRoot.querySelectorAll('example-entity-goal');
+      if (this.boxesInGoal.length === goals.length) {
+          console.log('You win!');
+          window.alert('You win!');
+        }
+      }
+    }
 
   render() {
     return (
@@ -168,7 +176,7 @@ export class ExampleGame implements ComponentInterface {
           <example-entity-player ref={ref => this.player = ref}
                          type="idle"
                          direction="down"
-                         onTransition={(ev) => this.playerTransition =  ev.detail}
+                         onTransition={(ev) => this.doPlayerTransition(ev.detail)}
                          vector={new Vector2(TilePos(2), TilePos(2))} />
         </tg-camera>
         </tg-touch-controller>
