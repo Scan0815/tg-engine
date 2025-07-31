@@ -116,6 +116,9 @@ export class ExamplePage {
               <li class={this.selectedComponent === 'key-controller' ? 'active' : ''}>
                 <a href="#" onClick={(e) => { e.preventDefault(); this.selectedComponent = 'key-controller'; }}>Key Controller</a>
               </li>
+              <li class={this.selectedComponent === 'particle' ? 'active' : ''}>
+                <a href="#" onClick={(e) => { e.preventDefault(); this.selectedComponent = 'particle'; }}>Particle</a>
+              </li>
               <li class={this.selectedComponent === 'game' ? 'active' : ''}>
                 <a href="#" onClick={(e) => { e.preventDefault(); this.selectedComponent = 'game'; }}>Game</a>
               </li>
@@ -370,6 +373,18 @@ export class ExamplePage {
                 <div class="demo-container">
                   <div class="demo-box">
                     <example-key-controller />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {this.selectedComponent === 'particle' && (
+              <div class="component-demo">
+                <h2>Particle System Component</h2>
+                <p>Create visual effects like explosions, fire, and smoke using particle systems.</p>
+                <div class="demo-container">
+                  <div class="demo-box">
+                    <example-particle />
                   </div>
                 </div>
               </div>

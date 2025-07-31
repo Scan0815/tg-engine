@@ -7,10 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IVector2 } from "./interfaces/IVector2";
 import { ICollider } from "./interfaces/ICollider";
+import { IParticleConfig } from "./interfaces";
 import { IAnimation } from "./interfaces/IAnimation";
 import { ITile } from "./interfaces/ITile";
 export { IVector2 } from "./interfaces/IVector2";
 export { ICollider } from "./interfaces/ICollider";
+export { IParticleConfig } from "./interfaces";
 export { IAnimation } from "./interfaces/IAnimation";
 export { ITile } from "./interfaces/ITile";
 export namespace Components {
@@ -61,6 +63,8 @@ export namespace Components {
     interface ExampleMouseController {
     }
     interface ExamplePage {
+    }
+    interface ExampleParticle {
     }
     interface ExampleSprite {
     }
@@ -133,6 +137,41 @@ export namespace Components {
         "keys": string[];
     }
     interface TgMouseController {
+    }
+    interface TgParticle {
+        /**
+          * @default {     count: 50,     emissionRate: 10,     life: 2000,     lifeVariation: 500,     velocity: { x: 0, y: -50 },     velocityVariation: { x: 30, y: 20 },     acceleration: { x: 0, y: 0 },     accelerationVariation: { x: 0, y: 0 },     size: 1,     sizeVariation: 0.5,     rotation: 0,     rotationSpeed: 0,     rotationSpeedVariation: 2,     alpha: 1,     alphaDecay: 0.02,     spread: 45,     gravity: { x: 0, y: 20 },     burst: false   }
+         */
+        "config": IParticleConfig;
+        /**
+          * @default 1
+         */
+        "hFrames": number;
+        /**
+          * @default 16
+         */
+        "height": number;
+        /**
+          * @default false
+         */
+        "loop": boolean;
+        /**
+          * @default false
+         */
+        "playing": boolean;
+        /**
+          * @default 1
+         */
+        "scale": number;
+        "src": string;
+        /**
+          * @default 1
+         */
+        "vFrames": number;
+        /**
+          * @default 16
+         */
+        "width": number;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -348,6 +387,12 @@ declare global {
         prototype: HTMLExamplePageElement;
         new (): HTMLExamplePageElement;
     };
+    interface HTMLExampleParticleElement extends Components.ExampleParticle, HTMLStencilElement {
+    }
+    var HTMLExampleParticleElement: {
+        prototype: HTMLExampleParticleElement;
+        new (): HTMLExampleParticleElement;
+    };
     interface HTMLExampleSpriteElement extends Components.ExampleSprite, HTMLStencilElement {
     }
     var HTMLExampleSpriteElement: {
@@ -422,6 +467,12 @@ declare global {
         prototype: HTMLTgMouseControllerElement;
         new (): HTMLTgMouseControllerElement;
     };
+    interface HTMLTgParticleElement extends Components.TgParticle, HTMLStencilElement {
+    }
+    var HTMLTgParticleElement: {
+        prototype: HTMLTgParticleElement;
+        new (): HTMLTgParticleElement;
+    };
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
      * It takes in the following properties:
@@ -479,12 +530,14 @@ declare global {
         "example-key-controller": HTMLExampleKeyControllerElement;
         "example-mouse-controller": HTMLExampleMouseControllerElement;
         "example-page": HTMLExamplePageElement;
+        "example-particle": HTMLExampleParticleElement;
         "example-sprite": HTMLExampleSpriteElement;
         "example-sprite-map": HTMLExampleSpriteMapElement;
         "tg-camera": HTMLTgCameraElement;
         "tg-collider": HTMLTgColliderElement;
         "tg-key-controller": HTMLTgKeyControllerElement;
         "tg-mouse-controller": HTMLTgMouseControllerElement;
+        "tg-particle": HTMLTgParticleElement;
         "tg-sprite": HTMLTgSpriteElement;
         "tg-sprite-animator": HTMLTgSpriteAnimatorElement;
         "tg-sprite-map": HTMLTgSpriteMapElement;
@@ -536,6 +589,8 @@ declare namespace LocalJSX {
     interface ExampleMouseController {
     }
     interface ExamplePage {
+    }
+    interface ExampleParticle {
     }
     interface ExampleSprite {
     }
@@ -621,6 +676,41 @@ declare namespace LocalJSX {
         "onMouseButton2Down"?: (event: TgMouseControllerCustomEvent<void>) => void;
         "onMouseButton2Up"?: (event: TgMouseControllerCustomEvent<void>) => void;
         "onMouseRotation"?: (event: TgMouseControllerCustomEvent<{ deltaX: number; deltaY: number }>) => void;
+    }
+    interface TgParticle {
+        /**
+          * @default {     count: 50,     emissionRate: 10,     life: 2000,     lifeVariation: 500,     velocity: { x: 0, y: -50 },     velocityVariation: { x: 30, y: 20 },     acceleration: { x: 0, y: 0 },     accelerationVariation: { x: 0, y: 0 },     size: 1,     sizeVariation: 0.5,     rotation: 0,     rotationSpeed: 0,     rotationSpeedVariation: 2,     alpha: 1,     alphaDecay: 0.02,     spread: 45,     gravity: { x: 0, y: 20 },     burst: false   }
+         */
+        "config"?: IParticleConfig;
+        /**
+          * @default 1
+         */
+        "hFrames"?: number;
+        /**
+          * @default 16
+         */
+        "height"?: number;
+        /**
+          * @default false
+         */
+        "loop"?: boolean;
+        /**
+          * @default false
+         */
+        "playing"?: boolean;
+        /**
+          * @default 1
+         */
+        "scale"?: number;
+        "src"?: string;
+        /**
+          * @default 1
+         */
+        "vFrames"?: number;
+        /**
+          * @default 16
+         */
+        "width"?: number;
     }
     /**
      * a component that can be used to display a sprite sheet image in a game or animation scene
@@ -754,12 +844,14 @@ declare namespace LocalJSX {
         "example-key-controller": ExampleKeyController;
         "example-mouse-controller": ExampleMouseController;
         "example-page": ExamplePage;
+        "example-particle": ExampleParticle;
         "example-sprite": ExampleSprite;
         "example-sprite-map": ExampleSpriteMap;
         "tg-camera": TgCamera;
         "tg-collider": TgCollider;
         "tg-key-controller": TgKeyController;
         "tg-mouse-controller": TgMouseController;
+        "tg-particle": TgParticle;
         "tg-sprite": TgSprite;
         "tg-sprite-animator": TgSpriteAnimator;
         "tg-sprite-map": TgSpriteMap;
@@ -780,12 +872,14 @@ declare module "@stencil/core" {
             "example-key-controller": LocalJSX.ExampleKeyController & JSXBase.HTMLAttributes<HTMLExampleKeyControllerElement>;
             "example-mouse-controller": LocalJSX.ExampleMouseController & JSXBase.HTMLAttributes<HTMLExampleMouseControllerElement>;
             "example-page": LocalJSX.ExamplePage & JSXBase.HTMLAttributes<HTMLExamplePageElement>;
+            "example-particle": LocalJSX.ExampleParticle & JSXBase.HTMLAttributes<HTMLExampleParticleElement>;
             "example-sprite": LocalJSX.ExampleSprite & JSXBase.HTMLAttributes<HTMLExampleSpriteElement>;
             "example-sprite-map": LocalJSX.ExampleSpriteMap & JSXBase.HTMLAttributes<HTMLExampleSpriteMapElement>;
             "tg-camera": LocalJSX.TgCamera & JSXBase.HTMLAttributes<HTMLTgCameraElement>;
             "tg-collider": LocalJSX.TgCollider & JSXBase.HTMLAttributes<HTMLTgColliderElement>;
             "tg-key-controller": LocalJSX.TgKeyController & JSXBase.HTMLAttributes<HTMLTgKeyControllerElement>;
             "tg-mouse-controller": LocalJSX.TgMouseController & JSXBase.HTMLAttributes<HTMLTgMouseControllerElement>;
+            "tg-particle": LocalJSX.TgParticle & JSXBase.HTMLAttributes<HTMLTgParticleElement>;
             /**
              * a component that can be used to display a sprite sheet image in a game or animation scene
              * It takes in the following properties:

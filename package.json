@@ -33,11 +33,15 @@
     "./engine/tg-sprite-map": {
       "import": "./dist/components/tg-sprite-map.js",
       "types": "./dist/components/tg-sprite-map.d.ts"
+    },
+    "./engine/tg-particle": {
+      "import": "./dist/components/tg-particle.js",
+      "types": "./dist/components/tg-particle.d.ts"
     }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Scan0815/tg-engine.git"
+    "url": "git+https://github.com/Scan0815/tg-engine.git"
   },
   "files": [
     "dist/",
