@@ -15,6 +15,8 @@
 - [tg-camera](../../engine/tg-camera)
 - [tg-collider](../../engine/tg-collider)
 - [tg-touch-controller](../../engine/tg-touch-controller)
+- [example-mouse-controller](../example-mouse-controller)
+- [example-key-controller](../example-key-controller)
 - [example-game](../example-game)
 
 ### Graph
@@ -26,9 +28,13 @@ graph TD;
   example-page --> tg-camera
   example-page --> tg-collider
   example-page --> tg-touch-controller
+  example-page --> example-mouse-controller
+  example-page --> example-key-controller
   example-page --> example-game
   tg-sprite-map --> tg-sprite-animator
   tg-sprite-map --> tg-sprite
+  example-mouse-controller --> tg-mouse-controller
+  example-key-controller --> tg-key-controller
   example-game --> tg-touch-controller
   example-game --> tg-camera
   example-game --> example-entity-level
