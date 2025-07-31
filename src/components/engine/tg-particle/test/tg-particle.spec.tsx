@@ -10,24 +10,20 @@ const mockImage = {
   naturalWidth: 0
 };
 
-const mockCanvas = {
-  getContext: () => ({
-    clearRect: jest.fn(),
-    save: jest.fn(),
-    restore: jest.fn(),
-    translate: jest.fn(),
-    rotate: jest.fn(),
-    drawImage: jest.fn(),
-    fillRect: jest.fn(),
-    globalAlpha: 1,
-    fillStyle: '#ffffff'
-  }),
-  width: 800,
-  height: 600
+const mockCanvasContext = {
+  clearRect: jest.fn(),
+  save: jest.fn(),
+  restore: jest.fn(),
+  translate: jest.fn(),
+  rotate: jest.fn(),
+  drawImage: jest.fn(),
+  fillRect: jest.fn(),
+  globalAlpha: 1,
+  fillStyle: '#ffffff'
 };
 
 global.Image = jest.fn(() => mockImage) as any;
-global.HTMLCanvasElement.prototype.getContext = jest.fn(() => mockCanvas.getContext());
+global.HTMLCanvasElement.prototype.getContext = jest.fn(() => mockCanvasContext) as any;
 
 describe('tg-particle', () => {
   it('renders', async () => {
