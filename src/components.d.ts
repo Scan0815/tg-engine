@@ -140,6 +140,18 @@ export namespace Components {
     }
     interface TgParticle {
         /**
+          * @default false
+         */
+        "autoSize": boolean;
+        /**
+          * @default 300
+         */
+        "canvasHeight": number;
+        /**
+          * @default 400
+         */
+        "canvasWidth": number;
+        /**
           * @default {     count: 50,     emissionRate: 10,     life: 2000,     lifeVariation: 500,     velocity: { x: 0, y: -50 },     velocityVariation: { x: 30, y: 20 },     acceleration: { x: 0, y: 0 },     accelerationVariation: { x: 0, y: 0 },     size: 1,     sizeVariation: 0.5,     rotation: 0,     rotationSpeed: 0,     rotationSpeedVariation: 2,     alpha: 1,     alphaDecay: 0.02,     spread: 45,     gravity: { x: 0, y: 20 },     burst: false   }
          */
         "config": IParticleConfig;
@@ -155,6 +167,14 @@ export namespace Components {
           * @default false
          */
         "loop": boolean;
+        /**
+          * @default 0
+         */
+        "offsetX": number;
+        /**
+          * @default 0
+         */
+        "offsetY": number;
         /**
           * @default false
          */
@@ -679,6 +699,18 @@ declare namespace LocalJSX {
     }
     interface TgParticle {
         /**
+          * @default false
+         */
+        "autoSize"?: boolean;
+        /**
+          * @default 300
+         */
+        "canvasHeight"?: number;
+        /**
+          * @default 400
+         */
+        "canvasWidth"?: number;
+        /**
           * @default {     count: 50,     emissionRate: 10,     life: 2000,     lifeVariation: 500,     velocity: { x: 0, y: -50 },     velocityVariation: { x: 30, y: 20 },     acceleration: { x: 0, y: 0 },     accelerationVariation: { x: 0, y: 0 },     size: 1,     sizeVariation: 0.5,     rotation: 0,     rotationSpeed: 0,     rotationSpeedVariation: 2,     alpha: 1,     alphaDecay: 0.02,     spread: 45,     gravity: { x: 0, y: 20 },     burst: false   }
          */
         "config"?: IParticleConfig;
@@ -694,6 +726,14 @@ declare namespace LocalJSX {
           * @default false
          */
         "loop"?: boolean;
+        /**
+          * @default 0
+         */
+        "offsetX"?: number;
+        /**
+          * @default 0
+         */
+        "offsetY"?: number;
         /**
           * @default false
          */

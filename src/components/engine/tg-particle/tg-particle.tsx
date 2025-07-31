@@ -15,6 +15,11 @@ export class TgParticle {
   @Prop() hFrames: number = 1;
   @Prop() vFrames: number = 1;
   @Prop() scale: number = 1;
+  @Prop() canvasWidth: number = 400;
+  @Prop() canvasHeight: number = 300;
+  @Prop() autoSize: boolean = false;
+  @Prop() offsetX: number = 0;
+  @Prop() offsetY: number = 0;
   @Prop() config: IParticleConfig = {
     count: 50,
     emissionRate: 10,
@@ -40,6 +45,8 @@ export class TgParticle {
 
   @State() particles: IParticle[] = [];
   @State() isActive: boolean = false;
+  @State() actualCanvasWidth: number = 400;
+  @State() actualCanvasHeight: number = 300;
 
   private animationId: number;
   private lastEmissionTime: number = 0;
@@ -70,8 +77,51 @@ export class TgParticle {
   private setupCanvas() {
     this.canvasRef = this.el.shadowRoot.querySelector('canvas');
     this.ctx = this.canvasRef.getContext('2d');
-    this.canvasRef.width = 800;
-    this.canvasRef.height = 600;
+    this.updateCanvasSize();
+  }
+
+  private updateCanvasSize() {
+    if (!this.canvasRef) return;
+
+    if (this.autoSize && this.particles.length > 0) {
+      const bounds = this.calculateParticleBounds();
+      this.actualCanvasWidth = Math.max(200, bounds.width + 100); // Add padding
+      this.actualCanvasHeight = Math.max(200, bounds.height + 100);
+    } else {
+      this.actualCanvasWidth = this.canvasWidth;
+      this.actualCanvasHeight = this.canvasHeight;
+    }
+
+    this.canvasRef.width = this.actualCanvasWidth;
+    this.canvasRef.height = this.actualCanvasHeight;
+  }
+
+  private calculateParticleBounds() {
+    if (this.particles.length === 0) {
+      return { width: this.canvasWidth, height: this.canvasHeight, minX: 0, minY: 0, maxX: this.canvasWidth, maxY: this.canvasHeight };
+    }
+
+    let minX = this.particles[0].position.x;
+    let maxX = this.particles[0].position.x;
+    let minY = this.particles[0].position.y;
+    let maxY = this.particles[0].position.y;
+
+    this.particles.forEach(particle => {
+      const particleSize = this.width * this.scale * particle.size;
+      minX = Math.min(minX, particle.position.x - particleSize / 2);
+      maxX = Math.max(maxX, particle.position.x + particleSize / 2);
+      minY = Math.min(minY, particle.position.y - particleSize / 2);
+      maxY = Math.max(maxY, particle.position.y + particleSize / 2);
+    });
+
+    return {
+      width: maxX - minX,
+      height: maxY - minY,
+      minX,
+      minY,
+      maxX,
+      maxY
+    };
   }
 
   private loadSprite() {
@@ -115,8 +165,8 @@ export class TgParticle {
   }
 
   private createParticle(): IParticle {
-    const centerX = this.canvasRef.width / 2;
-    const centerY = this.canvasRef.height / 2;
+    const centerX = this.actualCanvasWidth / 2 + this.offsetX;
+    const centerY = this.actualCanvasHeight / 2 + this.offsetY;
     
     const spreadRad = (this.config.spread * Math.PI) / 180;
     const angle = (Math.random() - 0.5) * spreadRad;
@@ -221,7 +271,12 @@ export class TgParticle {
       return particle.life > 0;
     });
 
-    this.ctx.clearRect(0, 0, this.canvasRef.width, this.canvasRef.height);
+    // Update canvas size if auto-sizing is enabled
+    if (this.autoSize) {
+      this.updateCanvasSize();
+    }
+
+    this.ctx.clearRect(0, 0, this.actualCanvasWidth, this.actualCanvasHeight);
     
     this.particles.forEach(particle => {
       this.renderParticle(particle);
