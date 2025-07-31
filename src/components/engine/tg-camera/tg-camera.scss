@@ -8,4 +8,9 @@
     margin: 0;
     padding: 0;
   }
+
+  ::slotted(.animated) {
+    transition: transform 400ms ease-in-out;
+  }
+
 }

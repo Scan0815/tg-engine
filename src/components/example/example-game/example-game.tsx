@@ -1,4 +1,4 @@
-import { ComponentInterface, Component, Element, h, Host, Listen } from '@stencil/core';
+import { ComponentInterface, Component, Element, h, Host, Listen,State } from '@stencil/core';
 import { MoveToDirection, TilePos } from './helper';
 import { ColliderManager } from '../../../manager/collider.manager';
 import { Vector2 } from '../../../models/vector2';
@@ -9,13 +9,14 @@ import { Vector2 } from '../../../models/vector2';
   shadow: true,
 })
 export class ExampleGame implements ComponentInterface {
-
+  @State() gameStart = false;
   @Element() el: HTMLExampleGameElement;
 
   private player: HTMLExampleEntityPlayerElement;
   private camera: HTMLTgCameraElement;
   private boxesInGoal: HTMLExampleEntityBoxElement[] = [];
   private playerTransition: boolean = false;
+
   @Listen('keydown', { target: 'window' })
   async handleKeyDown(ev: KeyboardEvent) {
     const inputs = {
@@ -29,6 +30,11 @@ export class ExampleGame implements ComponentInterface {
 
   componentDidLoad() {
     this.camera.target = this.player;
+
+    setTimeout(() => {
+      this.gameStart = true;
+    },500);
+
   }
 
   async walk(direction: 'up' | 'down' | 'left' | 'right') {
@@ -167,15 +173,15 @@ export class ExampleGame implements ComponentInterface {
           <example-entity-wall vector={new Vector2(TilePos(8), TilePos(9))} />
           <example-entity-wall vector={new Vector2(TilePos(9), TilePos(9))} />
 
-          <example-entity-box vector={new Vector2(TilePos(4), TilePos(4))} />
-          <example-entity-box vector={new Vector2(TilePos(6), TilePos(6))} />
-
+          <example-entity-box  class="animated" vector={new Vector2(TilePos(4), TilePos(4))} />
+          <example-entity-box  class="animated" vector={new Vector2(TilePos(6), TilePos(6))} />
           <example-entity-goal vector={new Vector2(TilePos(8), TilePos(7))} />
           <example-entity-goal vector={new Vector2(TilePos(8), TilePos(8))} />
 
           <example-entity-player ref={ref => this.player = ref}
                          type="idle"
                          direction="down"
+                         class="animated"
                          onTransition={(ev) => this.doPlayerTransition(ev.detail)}
                          vector={new Vector2(TilePos(2), TilePos(2))} />
         </tg-camera>
