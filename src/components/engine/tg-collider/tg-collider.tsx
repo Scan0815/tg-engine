@@ -1,6 +1,7 @@
 import { Component, Element, h, Method,Event,  EventEmitter, Host, Prop, ComponentInterface} from '@stencil/core';
 import { ColliderManager } from '../../../manager/collider.manager';
 import { ICollider } from '../../../interfaces';
+import { checkAABBCollision } from '../../../utils/utils';
 
 @Component({
   tag: 'tg-collider',
@@ -9,6 +10,7 @@ import { ICollider } from '../../../interfaces';
 export class TgCollider implements ComponentInterface {
   @Prop() name:string = "default";
   @Prop() type:string = "default";
+  @Prop() group:string = "default";
   @Prop() width:number = 0;
   @Prop() height:number = 0;
   @Prop() offsetX:number = 0;
@@ -37,8 +39,7 @@ export class TgCollider implements ComponentInterface {
 
     for (let i = 0; i < colliders.length; i++) {
       const b = colliders[i];
-      if (a.x < b.x + b.width && a.x + a.width > b.x &&
-        a.y < b.y + b.height && a.y + a.height > b.y) {
+      if (checkAABBCollision(a.x, a.y, a.width, a.height, b.x, b.y, b.width, b.height)) {
         return b;
       }
     }
@@ -48,12 +49,10 @@ export class TgCollider implements ComponentInterface {
   @Method()
   async checkCollisionOnPosition(x: number, y: number, width: number, height: number): Promise<HTMLTgColliderElement | null> {
     const a = this.el;
-    if (a.x < x + width && a.x + a.width > x &&
-      a.y < y + height && a.y + a.height > y) {
+    if (checkAABBCollision(a.x, a.y, a.width, a.height, x, y, width, height)) {
       return this.el;
-    } else {
-      return null;
     }
+    return null;
   }
 
   render() {

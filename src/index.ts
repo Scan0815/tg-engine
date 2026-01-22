@@ -9,10 +9,14 @@
  */
 
 export { ColliderManager, isTileCollider } from './manager/collider.manager';
-export type { TileColliderData, ColliderResult } from './manager/collider.manager';
+export type { TileColliderData, ColliderResult, CollisionFilterOptions } from './manager/collider.manager';
 export { AudioManager } from './manager/audio.manager';
+export type { AudioEventType, AudioEvent, AudioEventCallback } from './manager/audio.manager';
+export { InputManager } from './manager/input.manager';
+export type { InputEventType, InputEventData, InputEventCallback, MouseState, TouchState } from './manager/input.manager';
 export * from './interfaces';
 export { Vector2 } from './models/vector2/vector2';
+export { checkAABBCollision, CalculateOffset } from './utils/utils';
 
 // Export types
 export type * from './components.d.ts';

@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type          | Default     |
-| ------------- | -------------- | ----------- | ------------- | ----------- |
-| `followSpeed` | `follow-speed` |             | `number`      | `0.1`       |
-| `height`      | `height`       |             | `number`      | `undefined` |
-| `target`      | --             |             | `HTMLElement` | `null`      |
-| `width`       | `width`        |             | `number`      | `undefined` |
+| Property        | Attribute        | Description | Type          | Default     |
+| --------------- | ---------------- | ----------- | ------------- | ----------- |
+| `followSpeed`   | `follow-speed`   |             | `number`      | `0.1`       |
+| `height`        | `height`         |             | `number`      | `undefined` |
+| `idleThreshold` | `idle-threshold` |             | `number`      | `0.1`       |
+| `target`        | --               |             | `HTMLElement` | `null`      |
+| `width`         | `width`          |             | `number`      | `undefined` |
 
 
 ## Dependencies

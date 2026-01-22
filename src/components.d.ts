@@ -6,11 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IVector2 } from "./interfaces/IVector2";
-import { ICollider, IParticleConfig, ITile, IVector2 as IVector21 } from "./interfaces";
-import { IAnimation } from "./interfaces/IAnimation";
+import { IAnimation, ICollider, IParticleConfig, ITile, IVector2 as IVector21 } from "./interfaces";
 export { IVector2 } from "./interfaces/IVector2";
-export { ICollider, IParticleConfig, ITile, IVector2 as IVector21 } from "./interfaces";
-export { IAnimation } from "./interfaces/IAnimation";
+export { IAnimation, ICollider, IParticleConfig, ITile, IVector2 as IVector21 } from "./interfaces";
 export namespace Components {
     interface ExampleAnimator {
     }
@@ -73,6 +71,10 @@ export namespace Components {
         "followSpeed": number;
         "height": number;
         /**
+          * @default 0.1
+         */
+        "idleThreshold": number;
+        /**
           * @default null
          */
         "target": HTMLElement | null;
@@ -88,6 +90,10 @@ export namespace Components {
           * @default 'rgba(255,0,0,0.5)'
          */
         "debugColor": string;
+        /**
+          * @default "default"
+         */
+        "group": string;
         /**
           * @default 0
          */
@@ -635,6 +641,10 @@ declare namespace LocalJSX {
         "followSpeed"?: number;
         "height"?: number;
         /**
+          * @default 0.1
+         */
+        "idleThreshold"?: number;
+        /**
           * @default null
          */
         "target"?: HTMLElement | null;
@@ -649,6 +659,10 @@ declare namespace LocalJSX {
           * @default 'rgba(255,0,0,0.5)'
          */
         "debugColor"?: string;
+        /**
+          * @default "default"
+         */
+        "group"?: string;
         /**
           * @default 0
          */

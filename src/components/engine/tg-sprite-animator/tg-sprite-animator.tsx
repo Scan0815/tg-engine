@@ -1,6 +1,6 @@
 import { Component, ComponentInterface, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { CalculateOffset } from '../../../utils/utils';
-import { IAnimation } from '../../../interfaces/IAnimation';
+import { IAnimation } from '../../../interfaces';
 
 /**
  * Component to animate a tg-sprite component using a animation object
@@ -43,7 +43,6 @@ export class TgSpriteAnimator implements ComponentInterface {
   /** watch for changed state prop*/
   @Watch('state')
   watchStateHandler() {
-    console.log('state changed', this.state);
     this.updateAnimationClass(this.play);
   }
 

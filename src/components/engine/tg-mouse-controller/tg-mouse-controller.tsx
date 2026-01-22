@@ -19,20 +19,20 @@ export class TgMouseController implements ComponentInterface {
   @Event() mouseButton2Up: EventEmitter<void>;
 
   connectedCallback() {
-    this.el?.addEventListener('mousedown', this.handleMouseDown.bind(this));
-    this.el?.addEventListener('mousemove', this.handleMouseMove.bind(this));
-    this.el?.addEventListener('mouseup', this.handleMouseUp.bind(this));
-    this.el?.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+    this.el?.addEventListener('mousedown', this.handleMouseDown);
+    this.el?.addEventListener('mousemove', this.handleMouseMove);
+    this.el?.addEventListener('mouseup', this.handleMouseUp);
+    this.el?.addEventListener('mouseleave', this.handleMouseLeave);
   }
 
   disconnectedCallback() {
-    this.el?.removeEventListener('mousedown', this.handleMouseDown.bind(this));
-    this.el?.removeEventListener('mousemove', this.handleMouseMove.bind(this));
-    this.el?.removeEventListener('mouseup', this.handleMouseUp.bind(this));
-    this.el?.removeEventListener('mouseleave', this.handleMouseLeave.bind(this));
+    this.el?.removeEventListener('mousedown', this.handleMouseDown);
+    this.el?.removeEventListener('mousemove', this.handleMouseMove);
+    this.el?.removeEventListener('mouseup', this.handleMouseUp);
+    this.el?.removeEventListener('mouseleave', this.handleMouseLeave);
   }
 
-  private handleMouseDown(event: MouseEvent) {
+  private handleMouseDown = (event: MouseEvent) => {
     this.isDragging = true;
     this.lastX = event.clientX;
     this.lastY = event.clientY;
@@ -42,9 +42,9 @@ export class TgMouseController implements ComponentInterface {
     } else if (event.button === 2) {
       this.mouseButton2Down.emit();
     }
-  }
+  };
 
-  private handleMouseMove(event: MouseEvent) {
+  private handleMouseMove = (event: MouseEvent) => {
     if (!this.isDragging) return;
 
     const deltaX = event.clientX - this.lastX;
@@ -54,9 +54,9 @@ export class TgMouseController implements ComponentInterface {
 
     this.lastX = event.clientX;
     this.lastY = event.clientY;
-  }
+  };
 
-  private handleMouseUp(event: MouseEvent) {
+  private handleMouseUp = (event: MouseEvent) => {
     this.isDragging = false;
 
     if (event.button === 0) {
@@ -64,13 +64,13 @@ export class TgMouseController implements ComponentInterface {
     } else if (event.button === 2) {
       this.mouseButton2Up.emit();
     }
-  }
+  };
 
-  private handleMouseLeave() {
+  private handleMouseLeave = () => {
     this.isDragging = false;
     this.mouseButton1Up.emit();
     this.mouseButton2Up.emit();
-  }
+  };
 
   render() {
     return (

@@ -18,26 +18,26 @@ export class TgTouchController implements ComponentInterface {
   @Event() swipeRight: EventEmitter<void>;
 
   connectedCallback() {
-    this.el?.addEventListener('touchstart', this.handleTouchStart.bind(this), {
+    this.el?.addEventListener('touchstart', this.handleTouchStart, {
       passive: true,
     });
-    this.el?.addEventListener('touchend', this.handleTouchEnd.bind(this), {
+    this.el?.addEventListener('touchend', this.handleTouchEnd, {
       passive: true,
     });
   }
 
   disconnectedCallback() {
-    this.el?.removeEventListener('touchstart', this.handleTouchStart.bind(this));
-    this.el?.removeEventListener('touchend', this.handleTouchEnd.bind(this));
+    this.el?.removeEventListener('touchstart', this.handleTouchStart);
+    this.el?.removeEventListener('touchend', this.handleTouchEnd);
   }
 
-  private handleTouchStart(event: TouchEvent) {
+  private handleTouchStart = (event: TouchEvent) => {
     const touch = event.touches[0];
     this.startX = touch.clientX;
     this.startY = touch.clientY;
-  }
+  };
 
-  private handleTouchEnd(event: TouchEvent) {
+  private handleTouchEnd = (event: TouchEvent) => {
     const touch = event.changedTouches[0];
     const deltaX = touch.clientX - this.startX;
     const deltaY = touch.clientY - this.startY;
@@ -57,7 +57,7 @@ export class TgTouchController implements ComponentInterface {
         this.swipeUp.emit();
       }
     }
-  }
+  };
 
   render() {
     return (

@@ -11,6 +11,7 @@
 | ------------ | ------------- | ----------- | --------- | --------------------- |
 | `debug`      | `debug`       |             | `boolean` | `false`               |
 | `debugColor` | `debug-color` |             | `string`  | `'rgba(255,0,0,0.5)'` |
+| `group`      | `group`       |             | `string`  | `"default"`           |
 | `height`     | `height`      |             | `number`  | `0`                   |
 | `name`       | `name`        |             | `string`  | `"default"`           |
 | `offsetX`    | `offset-x`    |             | `number`  | `0`                   |

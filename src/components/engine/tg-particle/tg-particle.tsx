@@ -1,5 +1,6 @@
 import { Component, Prop, State, Element, Watch, h } from '@stencil/core';
 import { IParticle, IParticleConfig } from '../../../interfaces';
+import { Vector2 } from '../../../models/vector2';
 
 @Component({
   tag: 'tg-particle',
@@ -171,9 +172,7 @@ export class TgParticle {
     const spreadRad = (this.config.spread * Math.PI) / 180;
     const angle = (Math.random() - 0.5) * spreadRad;
     
-    const velocityMagnitude = Math.sqrt(
-      this.config.velocity.x ** 2 + this.config.velocity.y ** 2
-    );
+    const velocityMagnitude = Vector2.from(this.config.velocity).magnitude();
     
     const life = this.config.life + (Math.random() - 0.5) * this.config.lifeVariation;
     
