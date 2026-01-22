@@ -7,17 +7,21 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default |
-| ------------ | ------------- | ----------- | --------- | ------- |
-| `hFrames`    | `h-frames`    |             | `number`  | `1`     |
-| `height`     | `height`      |             | `number`  | `5`     |
-| `scale`      | `scale`       |             | `number`  | `1`     |
-| `src`        | `src`         |             | `string`  | `''`    |
-| `tileHeight` | `tile-height` |             | `number`  | `16`    |
-| `tileWidth`  | `tile-width`  |             | `number`  | `16`    |
-| `tiles`      | --            |             | `ITile[]` | `[]`    |
-| `vFrames`    | `v-frames`    |             | `number`  | `1`     |
-| `width`      | `width`       |             | `number`  | `5`     |
+| Property            | Attribute            | Description | Type                | Default    |
+| ------------------- | -------------------- | ----------- | ------------------- | ---------- |
+| `colliderMapId`     | `collider-map-id`    |             | `string`            | `''`       |
+| `debugColliders`    | `debug-colliders`    |             | `boolean`           | `false`    |
+| `hFrames`           | `h-frames`           |             | `number`            | `1`        |
+| `height`            | `height`             |             | `number`            | `5`        |
+| `registerColliders` | `register-colliders` |             | `boolean`           | `false`    |
+| `renderMode`        | `render-mode`        |             | `"canvas" \| "dom"` | `'canvas'` |
+| `scale`             | `scale`              |             | `number`            | `1`        |
+| `src`               | `src`                |             | `string`            | `''`       |
+| `tileHeight`        | `tile-height`        |             | `number`            | `16`       |
+| `tileWidth`         | `tile-width`         |             | `number`            | `16`       |
+| `tiles`             | --                   |             | `ITile[]`           | `[]`       |
+| `vFrames`           | `v-frames`           |             | `number`            | `1`        |
+| `width`             | `width`              |             | `number`            | `5`        |
 
 
 ## Dependencies

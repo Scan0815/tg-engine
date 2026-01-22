@@ -31,7 +31,7 @@
 
 ## Methods
 
-### `checkCollisionOnPosition(x: number, y: number, width: number, height: number) => Promise<TgCollider>`
+### `checkCollisionOnPosition(x: number, y: number, width: number, height: number) => Promise<HTMLTgColliderElement | null>`
 
 
 
@@ -46,7 +46,7 @@
 
 #### Returns
 
-Type: `Promise<TgCollider>`
+Type: `Promise<HTMLTgColliderElement>`
 
 
 

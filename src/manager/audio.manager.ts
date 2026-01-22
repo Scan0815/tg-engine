@@ -1,6 +1,10 @@
 // Use globalThis to ensure singleton works across different bundles
 const AUDIO_MANAGER_KEY = '__TG_ENGINE_AUDIO_MANAGER__';
 
+interface GlobalWithAudioManager {
+  [AUDIO_MANAGER_KEY]?: AudioManager;
+}
+
 export class AudioManager {
   private audioPools: Map<string, HTMLAudioElement[]>;
 
@@ -10,10 +14,11 @@ export class AudioManager {
 
   // Singleton-Instanz
   public static getInstance(): AudioManager {
-    if (!(globalThis as any)[AUDIO_MANAGER_KEY]) {
-      (globalThis as any)[AUDIO_MANAGER_KEY] = new AudioManager();
+    const global = globalThis as GlobalWithAudioManager;
+    if (!global[AUDIO_MANAGER_KEY]) {
+      global[AUDIO_MANAGER_KEY] = new AudioManager();
     }
-    return (globalThis as any)[AUDIO_MANAGER_KEY];
+    return global[AUDIO_MANAGER_KEY];
   }
 
   /**

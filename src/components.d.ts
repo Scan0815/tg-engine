@@ -6,15 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IVector2 } from "./interfaces/IVector2";
-import { ICollider } from "./interfaces/ICollider";
-import { IParticleConfig } from "./interfaces";
+import { ICollider, IParticleConfig, ITile, IVector2 as IVector21 } from "./interfaces";
 import { IAnimation } from "./interfaces/IAnimation";
-import { ITile } from "./interfaces/ITile";
 export { IVector2 } from "./interfaces/IVector2";
-export { ICollider } from "./interfaces/ICollider";
-export { IParticleConfig } from "./interfaces";
+export { ICollider, IParticleConfig, ITile, IVector2 as IVector21 } from "./interfaces";
 export { IAnimation } from "./interfaces/IAnimation";
-export { ITile } from "./interfaces/ITile";
 export namespace Components {
     interface ExampleAnimator {
     }
@@ -48,7 +44,7 @@ export namespace Components {
         /**
           * @default new Vector2(0, 0)
          */
-        "vector": IVector2;
+        "vector": IVector21;
     }
     interface ExampleEntityWall {
         /**
@@ -83,7 +79,7 @@ export namespace Components {
         "width": number;
     }
     interface TgCollider {
-        "checkCollisionOnPosition": (x: number, y: number, width: number, height: number) => Promise<TgCollider>;
+        "checkCollisionOnPosition": (x: number, y: number, width: number, height: number) => Promise<HTMLTgColliderElement | null>;
         /**
           * @default false
          */
@@ -276,6 +272,14 @@ export namespace Components {
     }
     interface TgSpriteMap {
         /**
+          * @default ''
+         */
+        "colliderMapId": string;
+        /**
+          * @default false
+         */
+        "debugColliders": boolean;
+        /**
           * @default 1
          */
         "hFrames": number;
@@ -283,6 +287,14 @@ export namespace Components {
           * @default 5
          */
         "height": number;
+        /**
+          * @default false
+         */
+        "registerColliders": boolean;
+        /**
+          * @default 'canvas'
+         */
+        "renderMode": 'dom' | 'canvas';
         /**
           * @default 1
          */
@@ -594,7 +606,7 @@ declare namespace LocalJSX {
         /**
           * @default new Vector2(0, 0)
          */
-        "vector"?: IVector2;
+        "vector"?: IVector21;
     }
     interface ExampleEntityWall {
         /**
@@ -831,6 +843,14 @@ declare namespace LocalJSX {
     }
     interface TgSpriteMap {
         /**
+          * @default ''
+         */
+        "colliderMapId"?: string;
+        /**
+          * @default false
+         */
+        "debugColliders"?: boolean;
+        /**
           * @default 1
          */
         "hFrames"?: number;
@@ -838,6 +858,14 @@ declare namespace LocalJSX {
           * @default 5
          */
         "height"?: number;
+        /**
+          * @default false
+         */
+        "registerColliders"?: boolean;
+        /**
+          * @default 'canvas'
+         */
+        "renderMode"?: 'dom' | 'canvas';
         /**
           * @default 1
          */
