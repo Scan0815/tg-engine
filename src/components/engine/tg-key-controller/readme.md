@@ -9,7 +9,7 @@
 
 | Property | Attribute | Description                                                                                      | Type       | Default |
 | -------- | --------- | ------------------------------------------------------------------------------------------------ | ---------- | ------- |
-| `keys`   | `keys`    | Array of keys to be monitored. e.g. ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'] | `string[]` | `[]`    |
+| `keys`   | --        | Array of keys to be monitored. e.g. ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'] | `string[]` | `[]`    |
 
 
 ## Events

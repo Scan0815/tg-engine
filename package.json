@@ -1,6 +1,6 @@
 {
   "name": "tg-engine",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "a small sprite game engine for typescript, build with stenciljs, ALPHA VERSION",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -10,8 +10,8 @@
   "unpkg": "dist/tg-engine/tg-engine.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/tg-engine/tg-engine.esm.js",
-      "require": "./dist/tg-engine/tg-engine.cjs.js",
+      "import": "./dist/tg-engine/index.esm.js",
+      "require": "./dist/index.cjs.js",
       "types": "./dist/types/index.d.ts"
     },
     "./engine/tg-collider": {
@@ -37,6 +37,11 @@
     "./engine/tg-particle": {
       "import": "./dist/components/tg-particle.js",
       "types": "./dist/components/tg-particle.d.ts"
+    },
+    "./loader": {
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs.js",
+      "types": "./loader/index.d.ts"
     }
   },
   "repository": {
