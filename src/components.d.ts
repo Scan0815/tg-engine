@@ -71,10 +71,6 @@ export namespace Components {
         "followSpeed": number;
         "height": number;
         /**
-          * @default 0.1
-         */
-        "idleThreshold": number;
-        /**
           * @default null
          */
         "target": HTMLElement | null;
@@ -640,10 +636,6 @@ declare namespace LocalJSX {
          */
         "followSpeed"?: number;
         "height"?: number;
-        /**
-          * @default 0.1
-         */
-        "idleThreshold"?: number;
         /**
           * @default null
          */
