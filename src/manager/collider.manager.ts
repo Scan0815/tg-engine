@@ -1,16 +1,18 @@
 import { TgCollider } from '../components/engine/tg-collider/tg-collider';
 
+// Use globalThis to ensure singleton works across different bundles
+const COLLIDER_MANAGER_KEY = '__TG_ENGINE_COLLIDER_MANAGER__';
+
 export class ColliderManager {
-  private static instance: ColliderManager;
   private colliders: any[] = [];
 
   private constructor() {}
 
   public static getInstance(): ColliderManager {
-    if (!ColliderManager.instance) {
-      ColliderManager.instance = new ColliderManager();
+    if (!(globalThis as any)[COLLIDER_MANAGER_KEY]) {
+      (globalThis as any)[COLLIDER_MANAGER_KEY] = new ColliderManager();
     }
-    return ColliderManager.instance;
+    return (globalThis as any)[COLLIDER_MANAGER_KEY];
   }
 
   public getColliders() {
