@@ -1,5 +1,17 @@
 import { Component, h, Host, State } from '@stencil/core';
 
+interface AnimationKeyframe {
+  frames: number[];
+  duration: number;
+}
+
+interface AnimationData {
+  hFrames: number;
+  vFrames: number;
+  keyframes: Record<string, AnimationKeyframe>;
+  src: string;
+}
+
 @Component({
   tag: 'example-page',
   styleUrl: 'example-page.scss',
@@ -42,7 +54,7 @@ export class ExamplePage {
     },
   };
 
-  private playedAnimation: any = this.exampleAnimations[this.animatorType];
+  private playedAnimation: AnimationData = this.exampleAnimations[this.animatorType];
 
   private animator: HTMLTgSpriteAnimatorElement;
   private sprite: HTMLTgSpriteElement;

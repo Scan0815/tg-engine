@@ -8,7 +8,8 @@
  * to consume components of this package as outlined in the `README.md`.
  */
 
-export { ColliderManager } from './manager/collider.manager';
+export { ColliderManager, isTileCollider } from './manager/collider.manager';
+export type { TileColliderData, ColliderResult } from './manager/collider.manager';
 export { AudioManager } from './manager/audio.manager';
 export * from './interfaces';
 export { Vector2 } from './models/vector2/vector2';

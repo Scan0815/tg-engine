@@ -1,6 +1,6 @@
 import { Component, Element, h, Method,Event,  EventEmitter, Host, Prop, ComponentInterface} from '@stencil/core';
 import { ColliderManager } from '../../../manager/collider.manager';
-import { ICollider } from '../../../interfaces/ICollider';
+import { ICollider } from '../../../interfaces';
 
 @Component({
   tag: 'tg-collider',
@@ -28,17 +28,17 @@ export class TgCollider implements ComponentInterface {
   }
 
   disconnectedCallback() {
-    this.manager.removeCollider(this);
+    this.manager.removeCollider(this.el);
   }
 
-  async checkCollisionOnName(name:string):Promise<TgCollider> {
-   const a = this.el;
-   const colliders =  this.manager.getColliders().filter(collider => collider.name === name);
+  async checkCollisionOnName(name: string): Promise<HTMLTgColliderElement | null> {
+    const a = this.el;
+    const colliders = this.manager.getColliders().filter(collider => collider.name === name);
 
-    for(let i = 0; i < colliders.length; i++){
+    for (let i = 0; i < colliders.length; i++) {
       const b = colliders[i];
-      if(a.x < b.x + b.width && a.x + a.width > b.x &&
-        a.y < b.y + b.height && a.y + a.height > b.y){
+      if (a.x < b.x + b.width && a.x + a.width > b.x &&
+        a.y < b.y + b.height && a.y + a.height > b.y) {
         return b;
       }
     }
@@ -46,12 +46,12 @@ export class TgCollider implements ComponentInterface {
   }
 
   @Method()
-  async checkCollisionOnPosition(x:number,y:number,width:number,height:number):Promise<TgCollider> {
+  async checkCollisionOnPosition(x: number, y: number, width: number, height: number): Promise<HTMLTgColliderElement | null> {
     const a = this.el;
-    if(a.x < x + width && a.x + a.width > x &&
-      a.y < y + height && a.y + a.height > y){
-      return this;
-    }else{
+    if (a.x < x + width && a.x + a.width > x &&
+      a.y < y + height && a.y + a.height > y) {
+      return this.el;
+    } else {
       return null;
     }
   }

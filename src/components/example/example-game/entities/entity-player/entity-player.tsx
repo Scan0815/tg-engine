@@ -1,6 +1,18 @@
 import { Event, Component, ComponentInterface, h, Host, Method, Prop, Element, EventEmitter } from '@stencil/core';
-import { IVector2 } from '../../../../../interfaces/IVector2';
+import { IVector2 } from '../../../../../interfaces';
 import { Vector2 } from '../../../../../models/vector2/vector2';
+
+interface AnimationKeyframe {
+  frames: number[];
+  duration: number;
+}
+
+interface AnimationData {
+  hFrames: number;
+  vFrames: number;
+  keyframes: Record<string, AnimationKeyframe>;
+  src: string;
+}
 
 @Component({
   tag: 'example-entity-player',
@@ -42,7 +54,7 @@ export class EntityPlayer implements ComponentInterface {
       src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAtdJREFUeJztWkuWozAMlOYNnKUP0ds+zmwm5yCbzGmbhWbRiGeMkOUP9oO4Nt2ElMpSjI0lAbw50P9gACCNMAuckqitvzE2ANA3qfowIqqDyHGghf56YREPDSLHgVb6v6UvIcoBJsW41YFvIhgRSfsVa+rvAnAkzve0QYRs5HDP0v9l+ZLlXkg8dK+VvvgIWISOQERZM6C2vhiAXOQ4UFt/fQRmABwNUzS0DaWilX7UVmLZg0vs4zX1T3kRulIA1zWAiSMiPKdJNPD38Qjt4wQA8O/51HwgUGZebf3dDAD4eVmQwM+o9hY2Iqp8/s6Rjdr6m11gBkAehL8gsdGj6bcsYquyz59/BqlO4VL6iAiDd5/56hoAsD1MpKy2ufwzbJ4xptug5wN88Z4PMOBO+YDdaTAVMefx0K9UUz8qAIhoOtKehTP0zQEoIZzjwFn65gDkHnFzHThLP+oRIKLkgZTIEZyhr+YDpPN5znlcc6CV/mYG+IPgg4NFvIQDrfVd0GuaaFj+vqaJwL51EfOJaLXBn1ttNNUfAMhHzN7NfNdOCr+G/tFUIAAxw2p99q7L//r4pK+PT3fKpC7fK3+xF81L4G7seH6kGckhO8G8JP8t0PMBvnjPBxjQ8wEC3iIfcEf0ALQeQGv0APA/vT9gwdXK27n6vT/AJ+bU53l/5SPoS7AzABxyS+n7/QF/Hg++v9MX+wPm5drPn1nr8xo/pT+AA8ol79j+AJfv64uGuJbvQhu474DGP3JAcsQF27Toa3xf37Sa1qzP916Ayuj5AF+85wMM6PkAAbfIB9yx/h+COANyavil6vi19MUA3LUXQMKmU7RUn3/LHoJYO8F8gFRyPtqGchoYWumr/QH+wSK2Ps8c/9pqo7a+i7Uu79XXLVjr81yeTu0PaKZfqj7v1uhb9AdY9NX+AIBdjT2qPn9h/sbQWqePKTWX6DEQbET3GTg2knD7/oD/ksvcybtF0+IAAAAASUVORK5CYII=',
     },
   };
-  private playedAnimation: any = this.animations[this.type];
+  private playedAnimation: AnimationData = this.animations[this.type];
 
   @Method()
   async getCollider() {
