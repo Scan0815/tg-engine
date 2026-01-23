@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, h, Host, Prop, State } from '@stencil/core';
+import { Component, ComponentInterface, Element, h, Host, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'tg-camera',
@@ -6,6 +6,8 @@ import { Component, ComponentInterface, h, Host, Prop, State } from '@stencil/co
   shadow: true,
 })
 export class TgCamera implements ComponentInterface {
+  @Element() el: HTMLElement;
+
   @Prop() target: HTMLElement | null = null;
   @Prop() width: number;
   @Prop() height: number;
@@ -22,17 +24,22 @@ export class TgCamera implements ComponentInterface {
 
   private updateCameraPosition() {
     if (this.target && this.cameraContent) {
+      const hostRect = this.el.getBoundingClientRect();
       const targetRect = this.target.getBoundingClientRect();
       const contentRect = this.cameraContent.getBoundingClientRect();
 
+      // Use actual host dimensions instead of props (supports percentage-based sizing)
+      const viewportWidth = this.width ?? hostRect.width;
+      const viewportHeight = this.height ?? hostRect.height;
+
       // Calculate target position relative to camera
-      let targetX = this.width / 2 - (targetRect.left + targetRect.width / 2 - contentRect.left);
-      let targetY = this.height / 2 - (targetRect.top + targetRect.height / 2 - contentRect.top);
+      let targetX = viewportWidth / 2 - (targetRect.left + targetRect.width / 2 - contentRect.left);
+      let targetY = viewportHeight / 2 - (targetRect.top + targetRect.height / 2 - contentRect.top);
 
       // Calculate bounds
-      const minX = Math.min(0, this.width - contentRect.width);
+      const minX = Math.min(0, viewportWidth - contentRect.width);
       const maxX = 0;
-      const minY = Math.min(0, this.height - contentRect.height);
+      const minY = Math.min(0, viewportHeight - contentRect.height);
       const maxY = 0;
 
       // Clamp target position to bounds
