@@ -290,6 +290,10 @@ export namespace Components {
          */
         "height": number;
         /**
+          * Force re-render of all tiles. Call this method when tile content has been modified without changing the array reference.
+         */
+        "refresh": () => Promise<void>;
+        /**
           * @default false
          */
         "registerColliders": boolean;

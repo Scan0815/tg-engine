@@ -24,6 +24,20 @@
 | `width`             | `width`              |             | `number`            | `5`        |
 
 
+## Methods
+
+### `refresh() => Promise<void>`
+
+Force re-render of all tiles. Call this method when tile content
+has been modified without changing the array reference.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Used by

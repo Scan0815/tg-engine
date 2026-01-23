@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element, Watch, Method } from '@stencil/core';
 import { ITile } from '../../../interfaces';
 import { ColliderManager } from '../../../manager/collider.manager';
 
@@ -72,6 +72,20 @@ export class TgSpriteMap {
       this.registerTileColliders();
     } else if (this.colliderMapId) {
       ColliderManager.getInstance().unregisterTileColliders(this.colliderMapId);
+    }
+  }
+
+  /**
+   * Force re-render of all tiles. Call this method when tile content
+   * has been modified without changing the array reference.
+   */
+  @Method()
+  async refresh(): Promise<void> {
+    if (this.renderMode === 'canvas' && this.imageLoaded) {
+      this.initCanvasRendering();
+    }
+    if (this.registerColliders) {
+      this.registerTileColliders();
     }
   }
 
