@@ -327,6 +327,11 @@ export namespace Components {
         "width": number;
     }
     interface TgTouchController {
+        /**
+          * Minimum distance in pixels required to trigger a swipe gesture. Lower values make the controller more sensitive to small movements.
+          * @default 20
+         */
+        "threshold": number;
     }
 }
 export interface ExampleEntityPlayerCustomEvent<T> extends CustomEvent<T> {
@@ -906,6 +911,11 @@ declare namespace LocalJSX {
         "onSwipeLeft"?: (event: TgTouchControllerCustomEvent<void>) => void;
         "onSwipeRight"?: (event: TgTouchControllerCustomEvent<void>) => void;
         "onSwipeUp"?: (event: TgTouchControllerCustomEvent<void>) => void;
+        /**
+          * Minimum distance in pixels required to trigger a swipe gesture. Lower values make the controller more sensitive to small movements.
+          * @default 20
+         */
+        "threshold"?: number;
     }
     interface IntrinsicElements {
         "example-animator": ExampleAnimator;

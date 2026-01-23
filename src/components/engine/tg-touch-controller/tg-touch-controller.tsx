@@ -1,4 +1,4 @@
-import { Component, EventEmitter,Host, h,Event,Element,ComponentInterface } from '@stencil/core';
+import { Component, EventEmitter, Host, h, Event, Element, ComponentInterface, Prop } from '@stencil/core';
 
 @Component({
   tag: 'tg-touch-controller',
@@ -8,7 +8,12 @@ import { Component, EventEmitter,Host, h,Event,Element,ComponentInterface } from
 export class TgTouchController implements ComponentInterface {
   private startX: number = 0;
   private startY: number = 0;
-  private threshold: number = 50; // Mindestdistanz, um eine Geste als valide zu betrachten
+
+  /**
+   * Minimum distance in pixels required to trigger a swipe gesture.
+   * Lower values make the controller more sensitive to small movements.
+   */
+  @Prop() threshold: number = 20;
 
   @Element() el!: HTMLTgTouchControllerElement;
 

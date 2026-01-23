@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute   | Description                                                                                                                         | Type     | Default |
+| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| `threshold` | `threshold` | Minimum distance in pixels required to trigger a swipe gesture. Lower values make the controller more sensitive to small movements. | `number` | `20`    |
+
+
 ## Events
 
 | Event        | Description | Type                |
